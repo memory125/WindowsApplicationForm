@@ -20,29 +20,39 @@ namespace Sunflower
         private void widthTxt_TextChanged(object sender, EventArgs e)
         {
             double amountResult = 0.0f;
+            double priceUnit = 0.0f;
             var width = widthTxt.Text.ToString();
             var length = lengthTxt.Text.ToString();
             var materialOption = materialComboBox.SelectedIndex;
 
+            if (width.Equals("") || length.Equals(""))
+                return;
+
             switch (Convert.ToInt32(materialOption))
             {
                 case 0:
-                    amountResult = Convert.ToDouble(width) * Convert.ToDouble(length) * 2.5;
+                    priceUnit = 2.2;
                     break;
 
                 case 1:
-                    amountResult = Convert.ToDouble(width) * Convert.ToDouble(length) * 4.2;
+                    priceUnit = 4.2;
                     break;
 
                 case 2:
-                    amountResult = Convert.ToDouble(width) * Convert.ToDouble(length) * 6.6;
+                    priceUnit = 6.6;
+                    break;
+
+                case 3:
+                    priceUnit = 8.6;
                     break;
 
                 default:
                     amountResult = 0.0;
                     break;                
             }
-                        
+
+            amountResult = Convert.ToDouble(width) * Convert.ToDouble(length) * priceUnit;
+
             amountTxt.Text = amountResult.ToString();
         }
 
@@ -50,7 +60,7 @@ namespace Sunflower
         {
             if (!Char.IsNumber(e.KeyChar) && !Char.IsPunctuation(e.KeyChar) && !Char.IsControl(e.KeyChar))
             {
-                e.Handled = true;//消除不合适字符
+                e.Handled = false;//消除不合适字符
             }
             else if (Char.IsPunctuation(e.KeyChar))
             {
@@ -82,6 +92,6 @@ namespace Sunflower
                     e.Handled = true;
                 }
             }
-        }    
+        }
     }
 }

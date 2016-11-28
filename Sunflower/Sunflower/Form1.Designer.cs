@@ -86,6 +86,7 @@
             // materialComboBox
             // 
             this.materialComboBox.DisplayMember = "Cotton";
+            this.materialComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.materialComboBox.FormattingEnabled = true;
             this.materialComboBox.Items.AddRange(new object[] {
             "Cotton",
@@ -96,7 +97,6 @@
             this.materialComboBox.Name = "materialComboBox";
             this.materialComboBox.Size = new System.Drawing.Size(121, 21);
             this.materialComboBox.TabIndex = 5;
-            this.materialComboBox.ValueMember = "0;1;2;";
             this.materialComboBox.SelectedIndexChanged += new System.EventHandler(this.widthTxt_TextChanged);
             // 
             // amountLabel
@@ -131,6 +131,7 @@
             this.Controls.Add(this.lengthLabel);
             this.Controls.Add(this.widthTxt);
             this.Controls.Add(this.widthLabel);
+            this.MaximizeBox = false;
             this.Name = "SunflowerForm";
             this.Text = "Sunflower";
             this.ResumeLayout(false);
