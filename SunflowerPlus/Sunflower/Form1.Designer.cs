@@ -31,6 +31,8 @@
             this.fabricLabel = new System.Windows.Forms.Label();
             this.fabricComboBox = new System.Windows.Forms.ComboBox();
             this.numberGroupBox = new System.Windows.Forms.GroupBox();
+            this.ropetypeComboBox = new System.Windows.Forms.ComboBox();
+            this.ropetypeLabel = new System.Windows.Forms.Label();
             this.numberTextBox = new System.Windows.Forms.TextBox();
             this.numberLabel = new System.Windows.Forms.Label();
             this.styleGroupBox = new System.Windows.Forms.GroupBox();
@@ -71,9 +73,11 @@
             this.distanceLabel = new System.Windows.Forms.Label();
             this.outputGroupBox = new System.Windows.Forms.GroupBox();
             this.priceoutGroupBox = new System.Windows.Forms.GroupBox();
+            this.receiptTextBox = new System.Windows.Forms.TextBox();
             this.salepriceTextBox = new System.Windows.Forms.TextBox();
             this.salepriceLabel = new System.Windows.Forms.Label();
             this.shippriceTextBox = new System.Windows.Forms.TextBox();
+            this.receiptLabel = new System.Windows.Forms.Label();
             this.shippriceLabel = new System.Windows.Forms.Label();
             this.totalpriceTextBox = new System.Windows.Forms.TextBox();
             this.logopriceTextBox = new System.Windows.Forms.TextBox();
@@ -127,9 +131,12 @@
             this.fabricComboBox.Name = "fabricComboBox";
             this.fabricComboBox.Size = new System.Drawing.Size(100, 21);
             this.fabricComboBox.TabIndex = 5;
+            this.fabricComboBox.SelectedIndexChanged += new System.EventHandler(this.fabricComboBox_SelectedIndexChanged);
             // 
             // numberGroupBox
             // 
+            this.numberGroupBox.Controls.Add(this.ropetypeComboBox);
+            this.numberGroupBox.Controls.Add(this.ropetypeLabel);
             this.numberGroupBox.Controls.Add(this.numberTextBox);
             this.numberGroupBox.Controls.Add(this.numberLabel);
             this.numberGroupBox.Location = new System.Drawing.Point(12, 12);
@@ -139,18 +146,40 @@
             this.numberGroupBox.TabStop = false;
             this.numberGroupBox.Text = "Number";
             // 
+            // ropetypeComboBox
+            // 
+            this.ropetypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ropetypeComboBox.FormattingEnabled = true;
+            this.ropetypeComboBox.Items.AddRange(new object[] {
+            "Single",
+            "Double"});
+            this.ropetypeComboBox.Location = new System.Drawing.Point(70, 49);
+            this.ropetypeComboBox.Name = "ropetypeComboBox";
+            this.ropetypeComboBox.Size = new System.Drawing.Size(101, 21);
+            this.ropetypeComboBox.TabIndex = 3;
+            this.ropetypeComboBox.SelectedIndexChanged += new System.EventHandler(this.ropetypeComboBox_SelectedIndexChanged);
+            // 
+            // ropetypeLabel
+            // 
+            this.ropetypeLabel.AutoSize = true;
+            this.ropetypeLabel.Location = new System.Drawing.Point(12, 52);
+            this.ropetypeLabel.Name = "ropetypeLabel";
+            this.ropetypeLabel.Size = new System.Drawing.Size(60, 13);
+            this.ropetypeLabel.TabIndex = 2;
+            this.ropetypeLabel.Text = "Rope Type";
+            // 
             // numberTextBox
             // 
-            this.numberTextBox.Location = new System.Drawing.Point(65, 25);
+            this.numberTextBox.Location = new System.Drawing.Point(70, 20);
             this.numberTextBox.Name = "numberTextBox";
-            this.numberTextBox.Size = new System.Drawing.Size(100, 20);
+            this.numberTextBox.Size = new System.Drawing.Size(101, 20);
             this.numberTextBox.TabIndex = 1;
             this.numberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numberTextBox_KeyPress);
             // 
             // numberLabel
             // 
             this.numberLabel.AutoSize = true;
-            this.numberLabel.Location = new System.Drawing.Point(12, 28);
+            this.numberLabel.Location = new System.Drawing.Point(12, 23);
             this.numberLabel.Name = "numberLabel";
             this.numberLabel.Size = new System.Drawing.Size(44, 13);
             this.numberLabel.TabIndex = 0;
@@ -189,14 +218,14 @@
             this.topComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.topComboBox.FormattingEnabled = true;
             this.topComboBox.Items.AddRange(new object[] {
-            "Single Line",
-            "Double Generic",
-            "Doubble Round",
-            "Tic Rope"});
+            "Generic",
+            "Muer",
+            "Tie"});
             this.topComboBox.Location = new System.Drawing.Point(53, 19);
             this.topComboBox.Name = "topComboBox";
             this.topComboBox.Size = new System.Drawing.Size(121, 21);
             this.topComboBox.TabIndex = 0;
+            this.topComboBox.SelectedIndexChanged += new System.EventHandler(this.topComboBox_SelectedIndexChanged);
             // 
             // bottomLabel
             // 
@@ -416,6 +445,7 @@
             this.ropeComboBox.Name = "ropeComboBox";
             this.ropeComboBox.Size = new System.Drawing.Size(100, 21);
             this.ropeComboBox.TabIndex = 5;
+            this.ropeComboBox.SelectedIndexChanged += new System.EventHandler(this.ropeComboBox_SelectedIndexChanged);
             // 
             // ropeLabel
             // 
@@ -445,6 +475,7 @@
             this.spriceTextBox.Name = "spriceTextBox";
             this.spriceTextBox.Size = new System.Drawing.Size(100, 20);
             this.spriceTextBox.TabIndex = 1;
+            this.spriceTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.spriceTextBox_KeyPress);
             // 
             // tpriceTextBox
             // 
@@ -452,6 +483,7 @@
             this.tpriceTextBox.Name = "tpriceTextBox";
             this.tpriceTextBox.Size = new System.Drawing.Size(100, 20);
             this.tpriceTextBox.TabIndex = 1;
+            this.tpriceTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tpriceTextBox_KeyPress);
             // 
             // spriceLabel
             // 
@@ -503,6 +535,7 @@
             this.shipwayComboBox.Name = "shipwayComboBox";
             this.shipwayComboBox.Size = new System.Drawing.Size(100, 21);
             this.shipwayComboBox.TabIndex = 5;
+            this.shipwayComboBox.SelectedIndexChanged += new System.EventHandler(this.shipwayComboBox_SelectedIndexChanged);
             // 
             // distanceComboBox
             // 
@@ -514,6 +547,7 @@
             this.distanceComboBox.Name = "distanceComboBox";
             this.distanceComboBox.Size = new System.Drawing.Size(100, 21);
             this.distanceComboBox.TabIndex = 5;
+            this.distanceComboBox.SelectedIndexChanged += new System.EventHandler(this.distanceComboBox_SelectedIndexChanged);
             // 
             // distanceLabel
             // 
@@ -538,9 +572,11 @@
             // 
             // priceoutGroupBox
             // 
+            this.priceoutGroupBox.Controls.Add(this.receiptTextBox);
             this.priceoutGroupBox.Controls.Add(this.salepriceTextBox);
             this.priceoutGroupBox.Controls.Add(this.salepriceLabel);
             this.priceoutGroupBox.Controls.Add(this.shippriceTextBox);
+            this.priceoutGroupBox.Controls.Add(this.receiptLabel);
             this.priceoutGroupBox.Controls.Add(this.shippriceLabel);
             this.priceoutGroupBox.Controls.Add(this.totalpriceTextBox);
             this.priceoutGroupBox.Controls.Add(this.logopriceTextBox);
@@ -551,52 +587,73 @@
             this.priceoutGroupBox.Size = new System.Drawing.Size(396, 74);
             this.priceoutGroupBox.TabIndex = 3;
             this.priceoutGroupBox.TabStop = false;
-            this.priceoutGroupBox.Text = "Prices";
+            this.priceoutGroupBox.Text = "Prices (RMB)";
+            // 
+            // receiptTextBox
+            // 
+            this.receiptTextBox.Location = new System.Drawing.Point(310, 20);
+            this.receiptTextBox.Name = "receiptTextBox";
+            this.receiptTextBox.ReadOnly = true;
+            this.receiptTextBox.Size = new System.Drawing.Size(66, 20);
+            this.receiptTextBox.TabIndex = 1;
             // 
             // salepriceTextBox
             // 
-            this.salepriceTextBox.Location = new System.Drawing.Point(280, 45);
+            this.salepriceTextBox.Location = new System.Drawing.Point(178, 47);
             this.salepriceTextBox.Name = "salepriceTextBox";
-            this.salepriceTextBox.Size = new System.Drawing.Size(79, 20);
+            this.salepriceTextBox.ReadOnly = true;
+            this.salepriceTextBox.Size = new System.Drawing.Size(66, 20);
             this.salepriceTextBox.TabIndex = 1;
             // 
             // salepriceLabel
             // 
             this.salepriceLabel.AutoSize = true;
-            this.salepriceLabel.Location = new System.Drawing.Point(190, 49);
+            this.salepriceLabel.Location = new System.Drawing.Point(136, 49);
             this.salepriceLabel.Name = "salepriceLabel";
-            this.salepriceLabel.Size = new System.Drawing.Size(85, 13);
+            this.salepriceLabel.Size = new System.Drawing.Size(31, 13);
             this.salepriceLabel.TabIndex = 0;
-            this.salepriceLabel.Text = "Sale Price(RMB)";
+            this.salepriceLabel.Text = "Sale ";
             // 
             // shippriceTextBox
             // 
-            this.shippriceTextBox.Location = new System.Drawing.Point(280, 20);
+            this.shippriceTextBox.Location = new System.Drawing.Point(178, 20);
             this.shippriceTextBox.Name = "shippriceTextBox";
-            this.shippriceTextBox.Size = new System.Drawing.Size(79, 20);
+            this.shippriceTextBox.ReadOnly = true;
+            this.shippriceTextBox.Size = new System.Drawing.Size(66, 20);
             this.shippriceTextBox.TabIndex = 1;
+            // 
+            // receiptLabel
+            // 
+            this.receiptLabel.AutoSize = true;
+            this.receiptLabel.Location = new System.Drawing.Point(255, 24);
+            this.receiptLabel.Name = "receiptLabel";
+            this.receiptLabel.Size = new System.Drawing.Size(44, 13);
+            this.receiptLabel.TabIndex = 0;
+            this.receiptLabel.Text = "Receipt";
             // 
             // shippriceLabel
             // 
             this.shippriceLabel.AutoSize = true;
-            this.shippriceLabel.Location = new System.Drawing.Point(190, 24);
+            this.shippriceLabel.Location = new System.Drawing.Point(136, 24);
             this.shippriceLabel.Name = "shippriceLabel";
-            this.shippriceLabel.Size = new System.Drawing.Size(85, 13);
+            this.shippriceLabel.Size = new System.Drawing.Size(31, 13);
             this.shippriceLabel.TabIndex = 0;
-            this.shippriceLabel.Text = "Ship Price(RMB)";
+            this.shippriceLabel.Text = "Ship ";
             // 
             // totalpriceTextBox
             // 
-            this.totalpriceTextBox.Location = new System.Drawing.Point(104, 46);
+            this.totalpriceTextBox.Location = new System.Drawing.Point(59, 46);
             this.totalpriceTextBox.Name = "totalpriceTextBox";
-            this.totalpriceTextBox.Size = new System.Drawing.Size(79, 20);
+            this.totalpriceTextBox.ReadOnly = true;
+            this.totalpriceTextBox.Size = new System.Drawing.Size(66, 20);
             this.totalpriceTextBox.TabIndex = 1;
             // 
             // logopriceTextBox
             // 
-            this.logopriceTextBox.Location = new System.Drawing.Point(104, 20);
+            this.logopriceTextBox.Location = new System.Drawing.Point(59, 20);
             this.logopriceTextBox.Name = "logopriceTextBox";
-            this.logopriceTextBox.Size = new System.Drawing.Size(79, 20);
+            this.logopriceTextBox.ReadOnly = true;
+            this.logopriceTextBox.Size = new System.Drawing.Size(66, 20);
             this.logopriceTextBox.TabIndex = 1;
             // 
             // totalpriceLabel
@@ -604,18 +661,18 @@
             this.totalpriceLabel.AutoSize = true;
             this.totalpriceLabel.Location = new System.Drawing.Point(14, 50);
             this.totalpriceLabel.Name = "totalpriceLabel";
-            this.totalpriceLabel.Size = new System.Drawing.Size(88, 13);
+            this.totalpriceLabel.Size = new System.Drawing.Size(34, 13);
             this.totalpriceLabel.TabIndex = 0;
-            this.totalpriceLabel.Text = "Total Price(RMB)";
+            this.totalpriceLabel.Text = "Total ";
             // 
             // logopriceLabel
             // 
             this.logopriceLabel.AutoSize = true;
             this.logopriceLabel.Location = new System.Drawing.Point(14, 24);
             this.logopriceLabel.Name = "logopriceLabel";
-            this.logopriceLabel.Size = new System.Drawing.Size(88, 13);
+            this.logopriceLabel.Size = new System.Drawing.Size(34, 13);
             this.logopriceLabel.TabIndex = 0;
-            this.logopriceLabel.Text = "Logo Price(RMB)";
+            this.logopriceLabel.Text = "Logo ";
             // 
             // routGroupBox1
             // 
@@ -645,6 +702,7 @@
             // 
             this.rweightTextBox.Location = new System.Drawing.Point(323, 22);
             this.rweightTextBox.Name = "rweightTextBox";
+            this.rweightTextBox.ReadOnly = true;
             this.rweightTextBox.Size = new System.Drawing.Size(57, 20);
             this.rweightTextBox.TabIndex = 1;
             // 
@@ -661,6 +719,7 @@
             // 
             this.rpriceTextBox.Location = new System.Drawing.Point(193, 23);
             this.rpriceTextBox.Name = "rpriceTextBox";
+            this.rpriceTextBox.ReadOnly = true;
             this.rpriceTextBox.Size = new System.Drawing.Size(57, 20);
             this.rpriceTextBox.TabIndex = 1;
             // 
@@ -677,6 +736,7 @@
             // 
             this.rcountTextBox.Location = new System.Drawing.Point(63, 23);
             this.rcountTextBox.Name = "rcountTextBox";
+            this.rcountTextBox.ReadOnly = true;
             this.rcountTextBox.Size = new System.Drawing.Size(57, 20);
             this.rcountTextBox.TabIndex = 1;
             // 
@@ -708,6 +768,7 @@
             // 
             this.fweightTextBox.Location = new System.Drawing.Point(323, 22);
             this.fweightTextBox.Name = "fweightTextBox";
+            this.fweightTextBox.ReadOnly = true;
             this.fweightTextBox.Size = new System.Drawing.Size(57, 20);
             this.fweightTextBox.TabIndex = 1;
             // 
@@ -724,6 +785,7 @@
             // 
             this.fpriceTextBox.Location = new System.Drawing.Point(193, 23);
             this.fpriceTextBox.Name = "fpriceTextBox";
+            this.fpriceTextBox.ReadOnly = true;
             this.fpriceTextBox.Size = new System.Drawing.Size(57, 20);
             this.fpriceTextBox.TabIndex = 1;
             // 
@@ -740,6 +802,7 @@
             // 
             this.fcountTextBox.Location = new System.Drawing.Point(63, 23);
             this.fcountTextBox.Name = "fcountTextBox";
+            this.fcountTextBox.ReadOnly = true;
             this.fcountTextBox.Size = new System.Drawing.Size(57, 20);
             this.fcountTextBox.TabIndex = 1;
             // 
@@ -853,6 +916,10 @@
         private System.Windows.Forms.GroupBox squareGroupBox;
         private System.Windows.Forms.TextBox heightTextBox3;
         private System.Windows.Forms.Label heightLabel3;
+        private System.Windows.Forms.TextBox receiptTextBox;
+        private System.Windows.Forms.Label receiptLabel;
+        private System.Windows.Forms.Label ropetypeLabel;
+        private System.Windows.Forms.ComboBox ropetypeComboBox;
     }
 }
 

@@ -13,10 +13,34 @@ namespace Sunflower
 {
     public partial class SunflowerForm : Form
     {
-        private List<double> fabricPrice;       
+        private List<double> fabircWeight;
+        private List<double> fabircWidth;
+        private List<double> fabricPrice;
+        private List<double> ropeWeight;
         private List<double> ropePrice;
         private List<double> shipdistancePrice;
         private List<double> shipwayPrice;
+
+        private Int16 currentBottomSelectIndex = 0;
+
+        private double Rope_Double_Space = 5.0f;
+        private double Rope_Single_Space = 5.0f;
+
+        private double Width_Space_Generic = 1.0;
+        private double Height_Space_Generic_top = 2.5;
+        private double Height_Space_Muer_top = 5.0;
+        private double Height_Space_Tie_top = 1.0;
+        private double Height_Space_Round_bottom = 1.0;
+        private double Height_Space_Single_bottom = 1.0;
+
+        private double Width_Space = 0.0f;
+        private double Height_Space = 0.0f;
+
+        private Int16 ropeTypeIndex = -1;
+        private Int16 fabricTypeIndex = -1;
+        private Int16 ropeMaterialIndex = -1;
+        private Int16 shipDistanceIndex = -1;
+        private Int16 shipWayIndex = -1;
 
         public SunflowerForm()
         {
@@ -48,9 +72,10 @@ namespace Sunflower
 
         private void bottomComboBox_TextChanged(object sender, EventArgs e)
         {
-            var top = bottomComboBox.SelectedIndex;
+            var bottomOption = bottomComboBox.SelectedIndex;
+            currentBottomSelectIndex = Convert.ToInt16(bottomOption);
 
-            switch(Convert.ToInt32(top))
+            switch (bottomOption)
             {
                 case 0:
                     widthTextBox2.Enabled = true;
@@ -91,18 +116,34 @@ namespace Sunflower
         {
             string currentPath = AppDomain.CurrentDomain.BaseDirectory;
             currentPath += "fabrics.bin";
-          
+
+            if (!File.Exists(currentPath))
+            {
+                MessageBox.Show(string.Format("文件\"{0}\"不存在！", currentPath, Encoding.UTF8));
+                return;
+            }
+
             string[] lines = File.ReadAllLines(currentPath, Encoding.UTF8);
             if (!lines.Equals(null))
             {
+               fabircWeight = new List<double>();
+               fabircWidth = new List<double>();
                fabricPrice = new List<double>();
             }
             
             foreach (string line in lines)
             {
-                string[] str = line.Split(',');
-                fabricComboBox.Items.Add(str[0]);                
-                fabricPrice.Add(Convert.ToDouble(str[1]));                
+                string[] str = line.Split('/');
+                if (str.Length != 4)
+                {
+                    MessageBox.Show(string.Format("\"{0}\"文件格式错误，请参考\"name/weight/width/price\"格式！", currentPath, Encoding.UTF8));
+                    return;
+                }
+            
+                fabricComboBox.Items.Add(str[0]);
+                fabircWeight.Add(Convert.ToDouble(str[1]));
+                fabircWidth.Add(Convert.ToDouble(str[2]));
+                fabricPrice.Add(Convert.ToDouble(str[3]));
             }
         }
 
@@ -111,17 +152,30 @@ namespace Sunflower
             string currentPath = AppDomain.CurrentDomain.BaseDirectory;
             currentPath += "ropes.bin";
 
+            if (!File.Exists(currentPath))
+            {
+                MessageBox.Show(string.Format("文件\"{0}\"不存在！", currentPath, Encoding.UTF8));
+                return;
+            }
+
             string[] lines = File.ReadAllLines(currentPath, Encoding.UTF8);
             if (!lines.Equals(null))
             {
+                ropeWeight = new List<double>();
                 ropePrice = new List<double>();
             }
 
             foreach (string line in lines)
             {
-                string[] str = line.Split(',');
+                string[] str = line.Split('/');
+                if (str.Length != 3)
+                {
+                    MessageBox.Show(string.Format("\"{0}\"文件格式错误，请参考\"name/weight/price\"格式！", currentPath, Encoding.UTF8));
+                    return;
+                }
                 ropeComboBox.Items.Add(str[0]);
-                ropePrice.Add(Convert.ToDouble(str[1]));
+                ropeWeight.Add(Convert.ToDouble(str[1]));
+                ropePrice.Add(Convert.ToDouble(str[2]));
             }
         }
 
@@ -129,6 +183,12 @@ namespace Sunflower
         {
             string currentPath = AppDomain.CurrentDomain.BaseDirectory;
             currentPath += "shipdistances.bin";
+
+            if (!File.Exists(currentPath))
+            {
+                MessageBox.Show(string.Format("文件\"{0}\"不存在！", currentPath, Encoding.UTF8));
+                return;
+            }
 
             string[] lines = File.ReadAllLines(currentPath, Encoding.UTF8);
             if (!lines.Equals(null))
@@ -138,7 +198,12 @@ namespace Sunflower
 
             foreach (string line in lines)
             {
-                string[] str = line.Split(',');
+                string[] str = line.Split('/');
+                if (str.Length != 2)
+                {
+                    MessageBox.Show(string.Format("\"{0}\"文件格式错误，请参考\"name/price\"格式！", currentPath, Encoding.UTF8));
+                    return;
+                }
                 //Encoding utf8 = Encoding.UTF8;
                 //Encoding defaultCode = Encoding.Unicode;
 
@@ -160,6 +225,12 @@ namespace Sunflower
             string currentPath = AppDomain.CurrentDomain.BaseDirectory;
             currentPath += "shipways.bin";
 
+            if (!File.Exists(currentPath))
+            {
+                MessageBox.Show(string.Format("文件\"{0}\"不存在！", currentPath, Encoding.UTF8));
+                return;
+            }
+
             string[] lines = File.ReadAllLines(currentPath, Encoding.UTF8);
             if (!lines.Equals(null))
             {
@@ -168,7 +239,12 @@ namespace Sunflower
 
             foreach (string line in lines)
             {
-                string[] str = line.Split(',');
+                string[] str = line.Split('/');
+                if (str.Length != 2)
+                {
+                    MessageBox.Show(string.Format("\"{0}\"文件格式错误，请参考\"name/price\"格式！", currentPath, Encoding.UTF8));
+                    return;
+                }
                 shipwayComboBox.Items.Add(str[0]);
                 shipwayPrice.Add(Convert.ToDouble(str[1]));
             }
@@ -294,6 +370,281 @@ namespace Sunflower
                     e.Handled = true;
                 }
             }
+        }
+
+        private void tpriceTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsNumber(e.KeyChar) && !Char.IsPunctuation(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;//消除不合适字符
+            }
+            else if (Char.IsPunctuation(e.KeyChar))
+            {
+                if (e.KeyChar != '.' || this.tpriceTextBox.Text.Length == 0)//小数点
+                {
+                    e.Handled = true;
+                }
+                if (tpriceTextBox.Text.LastIndexOf('.') != -1)
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void spriceTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsNumber(e.KeyChar) && !Char.IsPunctuation(e.KeyChar) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;//消除不合适字符
+            }
+            else if (Char.IsPunctuation(e.KeyChar))
+            {
+                if (e.KeyChar != '.' || this.spriceTextBox.Text.Length == 0)//小数点
+                {
+                    e.Handled = true;
+                }
+                if (spriceTextBox.Text.LastIndexOf('.') != -1)
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void UpdateOutputResult()
+        {
+            switch (currentBottomSelectIndex)
+            {
+                case 0:                   // square
+                    CalculateSqureOutput();
+                    break;
+
+                case 1:                   // round
+                    CalculateRoundOutput();
+                    break;
+
+                case 2:                   // generic
+                    CalculateGenericOutput();
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void CalculateSqureOutput()
+        {   
+            var widthValue = widthTextBox2.Text;
+            var lengthValue = lengthTextBox.Text;
+            var heightValue = heightTextBox3.Text;
+            
+            if (widthValue.Equals(null) || lengthValue.Equals(null) || heightValue.Equals(null))
+            {
+                return;
+            }
+
+            double piece_width = Convert.ToDouble(lengthValue) + Convert.ToDouble(widthValue) + Width_Space * 2;
+            double piece_height = Convert.ToDouble(heightValue) * 2 + Height_Space * 2 + Convert.ToDouble(lengthValue);
+
+            CalculatePriceAndUpdateOutputContent(piece_width, piece_height);
+        }
+
+        private void CalculateRoundOutput()
+        {     
+            var diameterValue = diameterTextBox.Text;
+            var heightValue = heightTextBox2.Text;
+
+            if (diameterValue.Equals(null) || heightValue.Equals(null))
+            {
+                return;
+            }
+          
+            double piece_width = 3.141 * Convert.ToDouble(diameterValue) + Width_Space;
+            double piece_height = Convert.ToDouble(heightValue) + Height_Space * 2 + Height_Space_Round_bottom;
+
+            CalculatePriceAndUpdateOutputContent(piece_width, piece_height);
+        }
+
+        private void CalculateGenericOutput()
+        {
+            var widthValue = widthTextBox1.Text;
+            var heightValue = heightTextBox1.Text;
+
+            if (widthValue.Equals(null) || heightValue.Equals(null))
+            {
+                return;
+            }
+
+            double piece_width = Convert.ToDouble(widthValue) + Width_Space * 2;
+            double piece_height = (Convert.ToDouble(heightValue) + Height_Space) * 2;
+
+            CalculatePriceAndUpdateOutputContent(piece_width, piece_height);
+        }
+
+        private void ropetypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var ropetypeIndex = ropetypeComboBox.SelectedIndex;
+            ropeTypeIndex = Convert.ToInt16(ropetypeIndex);
+
+            switch (ropetypeIndex)
+            {
+                case 0:                  //single
+                    Width_Space = Width_Space_Generic / 2;
+                    break;
+
+                case 1:                  //double
+                    Width_Space = Width_Space_Generic;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        
+        private void CalculatePriceAndUpdateOutputContent(double piece_width, double piece_height)
+        {
+            var totalNumber = numberTextBox.Text;        
+            var ropeType = ropetypeComboBox.SelectedIndex;
+            var logotPriceValue = tpriceTextBox.Text;
+            var logosPriceValue = spriceTextBox.Text;        
+
+            if (totalNumber.Equals(null) || logotPriceValue.Equals(null) || logosPriceValue.Equals(null))
+            {
+                return;
+            }
+
+            if (ropeTypeIndex.Equals(-1) || fabricTypeIndex.Equals(-1) || ropeMaterialIndex.Equals(-1)
+                || shipDistanceIndex.Equals(-1) || shipWayIndex.Equals(-1))
+            {
+                return;
+            }
+
+            if (piece_width.CompareTo(piece_height) > 0)
+            {
+                double temp = piece_width;
+                piece_width = piece_height;
+                piece_height = temp;
+            }
+
+            // calculate the fabric output
+            double fabricNeed = Convert.ToInt32(totalNumber) / Convert.ToInt32(fabircWidth[fabricTypeIndex] / piece_width) * piece_height / 100;
+            double fabricNeed_Weight = Convert.ToInt32(totalNumber) * piece_width * piece_height / 100 * fabircWeight[fabricTypeIndex] / 1000;
+            double fabricNeed_Price = fabricNeed * fabricPrice[fabricTypeIndex];
+
+            // update the fabric output
+            fcountTextBox.Text = fabricNeed.ToString();
+            fpriceTextBox.Text = fabricNeed_Price.ToString();
+            fweightTextBox.Text = fabricNeed_Weight.ToString();
+
+            double ropeNeed = 0.0;
+
+            // rope
+            switch (ropeType)
+            {
+                case 0:
+                    ropeNeed = (piece_width + Rope_Double_Space) * 4;
+                    break;
+
+                case 1:
+                    ropeNeed = (piece_width + Rope_Single_Space) * 2;
+                    break;
+            }
+            // calculate the rope output            
+            double ropeNeed_Price = ropeNeed * ropePrice[ropeMaterialIndex];
+            double ropeNeed_Weight = ropeNeed * ropeWeight[ropeMaterialIndex];
+
+            // update the rope output
+            rcountTextBox.Text = ropeNeed.ToString();
+            rpriceTextBox.Text = ropeNeed_Price.ToString();
+            rweightTextBox.Text = ropeNeed_Weight.ToString();
+
+            // calculate the logo price
+            double Logo_Price = (Convert.ToDouble(logotPriceValue) + Convert.ToDouble(logosPriceValue)) * Convert.ToInt32(totalNumber);
+
+            // calculate the total weight
+            double totalWeight = fabricNeed_Weight + ropeNeed_Weight;
+
+            // calculate the ship price
+            double Ship_Price = shipdistancePrice[shipDistanceIndex] + shipwayPrice[shipWayIndex] * (totalWeight - 0.9);
+
+            // calculate the total price
+            double Total_Price = fabricNeed_Price + ropeNeed_Price + Logo_Price + Ship_Price;
+
+            // calculate the sale price (x = 20%)
+            double Sale_Price = Total_Price * (1 + 0.2);
+
+            // calculate the receipt price (y = 3%)
+            double Receipt_Price = Sale_Price * (1 + 0.03);
+
+            // update the finally output
+            // logo
+            logopriceTextBox.Text = Logo_Price.ToString();
+
+            // ship
+            shippriceTextBox.Text = Ship_Price.ToString();
+
+            // receipt
+            receiptTextBox.Text = Receipt_Price.ToString();
+
+            // sale
+            salepriceTextBox.Text = Sale_Price.ToString();
+
+            // total
+            totalpriceTextBox.Text = Total_Price.ToString();
+        }
+
+        private void topComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var topIndex = topComboBox.SelectedIndex;
+
+            switch (topIndex)
+            {
+                case 0:               //Generic
+                    Height_Space = Height_Space_Generic_top;
+                    break;
+
+                case 1:               //Muer
+                    Height_Space = Height_Space_Muer_top;
+                    break;
+
+                case 2:               //Tie
+                    Height_Space = Height_Space_Tie_top;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        private void fabricComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var fabricIndex = fabricComboBox.SelectedIndex;
+            fabricTypeIndex = Convert.ToInt16(fabricIndex);
+
+            UpdateOutputResult();
+        }
+
+        private void ropeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var ropeIndex = ropeComboBox.SelectedIndex;
+            ropeMaterialIndex = Convert.ToInt16(ropeIndex);
+
+            UpdateOutputResult();
+        }
+
+        private void distanceComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var distanceIndex = distanceComboBox.SelectedIndex;
+            shipDistanceIndex = Convert.ToInt16(distanceIndex);
+
+            UpdateOutputResult();
+        }
+
+        private void shipwayComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var shipwayIndex = shipwayComboBox.SelectedIndex;
+            shipWayIndex = Convert.ToInt16(shipwayIndex);
+
+            UpdateOutputResult();            
         }
     }
 }
