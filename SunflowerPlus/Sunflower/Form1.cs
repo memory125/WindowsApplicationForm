@@ -124,7 +124,12 @@ namespace Sunflower
             }
 
             string[] lines = File.ReadAllLines(currentPath, Encoding.UTF8);
-            if (!lines.Equals(null))
+            if (lines.Length == 0)
+            {
+                MessageBox.Show(string.Format("\"{0}\"内容为空，请参考\"name/price\"格式！", currentPath, Encoding.UTF8));
+                return;
+            }
+            else
             {
                fabircWeight = new List<double>();
                fabircWidth = new List<double>();
@@ -159,7 +164,12 @@ namespace Sunflower
             }
 
             string[] lines = File.ReadAllLines(currentPath, Encoding.UTF8);
-            if (!lines.Equals(null))
+            if (lines.Length == 0)
+            {
+                MessageBox.Show(string.Format("\"{0}\"内容为空，请参考\"name/price\"格式！", currentPath, Encoding.UTF8));
+                return;
+            }
+            else
             {
                 ropeWeight = new List<double>();
                 ropePrice = new List<double>();
@@ -191,7 +201,12 @@ namespace Sunflower
             }
 
             string[] lines = File.ReadAllLines(currentPath, Encoding.UTF8);
-            if (!lines.Equals(null))
+            if (lines.Length == 0)
+            {
+                MessageBox.Show(string.Format("\"{0}\"内容为空，请参考\"name/price\"格式！", currentPath, Encoding.UTF8));
+                return;
+            }
+            else
             {
                 shipdistancePrice = new List<double>();
             }
@@ -232,7 +247,12 @@ namespace Sunflower
             }
 
             string[] lines = File.ReadAllLines(currentPath, Encoding.UTF8);
-            if (!lines.Equals(null))
+            if (lines.Length == 0)
+            {
+                MessageBox.Show(string.Format("\"{0}\"内容为空，请参考\"name/price\"格式！", currentPath, Encoding.UTF8));
+                return;
+            }
+            else
             {
                 shipwayPrice = new List<double>();
             }
@@ -526,8 +546,16 @@ namespace Sunflower
             }
 
             // calculate the fabric output
-            double fabricNeed = Convert.ToInt32(totalNumber) / Convert.ToInt32(fabircWidth[fabricTypeIndex] / piece_width) * piece_height / 100;
-            double fabricNeed_Weight = Convert.ToInt32(totalNumber) * piece_width * piece_height / 100 * fabircWeight[fabricTypeIndex] / 1000;
+
+            var TotalNumber = Convert.ToInt32(totalNumber);
+            var FabricNumberUnit = fabircWidth[fabricTypeIndex] / piece_width;
+            if (FabricNumberUnit.CompareTo(1) < 0)
+            {
+                MessageBox.Show(string.Format("袋子尺寸超过一张布料尺寸！", Encoding.UTF8));
+            } 
+
+            Int32 fabricNeed = Convert.ToInt32(TotalNumber / FabricNumberUnit) * Convert.ToInt32(piece_height / 100);
+            double fabricNeed_Weight = (TotalNumber * piece_width * piece_height / 100) * fabircWeight[fabricTypeIndex] / 1000;
             double fabricNeed_Price = fabricNeed * fabricPrice[fabricTypeIndex];
 
             // update the fabric output
