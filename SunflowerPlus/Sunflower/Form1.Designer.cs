@@ -117,9 +117,9 @@
             this.fabricLabel.AutoSize = true;
             this.fabricLabel.Location = new System.Drawing.Point(11, 25);
             this.fabricLabel.Name = "fabricLabel";
-            this.fabricLabel.Size = new System.Drawing.Size(36, 13);
+            this.fabricLabel.Size = new System.Drawing.Size(34, 13);
             this.fabricLabel.TabIndex = 4;
-            this.fabricLabel.Text = "Fabric";
+            this.fabricLabel.Text = "布料:";
             // 
             // fabricComboBox
             // 
@@ -144,7 +144,7 @@
             this.numberGroupBox.Size = new System.Drawing.Size(199, 80);
             this.numberGroupBox.TabIndex = 8;
             this.numberGroupBox.TabStop = false;
-            this.numberGroupBox.Text = "Number";
+            this.numberGroupBox.Text = "数量";
             // 
             // ropetypeComboBox
             // 
@@ -164,9 +164,9 @@
             this.ropetypeLabel.AutoSize = true;
             this.ropetypeLabel.Location = new System.Drawing.Point(12, 52);
             this.ropetypeLabel.Name = "ropetypeLabel";
-            this.ropetypeLabel.Size = new System.Drawing.Size(60, 13);
+            this.ropetypeLabel.Size = new System.Drawing.Size(34, 13);
             this.ropetypeLabel.TabIndex = 2;
-            this.ropetypeLabel.Text = "Rope Type";
+            this.ropetypeLabel.Text = "绳子:";
             // 
             // numberTextBox
             // 
@@ -181,9 +181,9 @@
             this.numberLabel.AutoSize = true;
             this.numberLabel.Location = new System.Drawing.Point(12, 23);
             this.numberLabel.Name = "numberLabel";
-            this.numberLabel.Size = new System.Drawing.Size(44, 13);
+            this.numberLabel.Size = new System.Drawing.Size(34, 13);
             this.numberLabel.TabIndex = 0;
-            this.numberLabel.Text = "Number";
+            this.numberLabel.Text = "数目:";
             // 
             // styleGroupBox
             // 
@@ -196,7 +196,7 @@
             this.styleGroupBox.Size = new System.Drawing.Size(204, 80);
             this.styleGroupBox.TabIndex = 9;
             this.styleGroupBox.TabStop = false;
-            this.styleGroupBox.Text = "Style";
+            this.styleGroupBox.Text = "格式";
             // 
             // bottomComboBox
             // 
@@ -232,18 +232,18 @@
             this.bottomLabel.AutoSize = true;
             this.bottomLabel.Location = new System.Drawing.Point(7, 52);
             this.bottomLabel.Name = "bottomLabel";
-            this.bottomLabel.Size = new System.Drawing.Size(40, 13);
+            this.bottomLabel.Size = new System.Drawing.Size(34, 13);
             this.bottomLabel.TabIndex = 0;
-            this.bottomLabel.Text = "Bottom";
+            this.bottomLabel.Text = "底部:";
             // 
             // topLabel
             // 
             this.topLabel.AutoSize = true;
             this.topLabel.Location = new System.Drawing.Point(7, 23);
             this.topLabel.Name = "topLabel";
-            this.topLabel.Size = new System.Drawing.Size(26, 13);
+            this.topLabel.Size = new System.Drawing.Size(34, 13);
             this.topLabel.TabIndex = 0;
-            this.topLabel.Text = "Top";
+            this.topLabel.Text = "顶部:";
             // 
             // sizeGroupBox
             // 
@@ -255,7 +255,7 @@
             this.sizeGroupBox.Size = new System.Drawing.Size(409, 166);
             this.sizeGroupBox.TabIndex = 8;
             this.sizeGroupBox.TabStop = false;
-            this.sizeGroupBox.Text = "Size";
+            this.sizeGroupBox.Text = "大小";
             // 
             // squareGroupBox
             // 
@@ -270,7 +270,7 @@
             this.squareGroupBox.Size = new System.Drawing.Size(396, 46);
             this.squareGroupBox.TabIndex = 4;
             this.squareGroupBox.TabStop = false;
-            this.squareGroupBox.Text = "Square";
+            this.squareGroupBox.Text = "方形";
             // 
             // widthTextBox2
             // 
@@ -304,27 +304,27 @@
             this.widthLabel2.AutoSize = true;
             this.widthLabel2.Location = new System.Drawing.Point(10, 21);
             this.widthLabel2.Name = "widthLabel2";
-            this.widthLabel2.Size = new System.Drawing.Size(35, 13);
+            this.widthLabel2.Size = new System.Drawing.Size(34, 13);
             this.widthLabel2.TabIndex = 0;
-            this.widthLabel2.Text = "Width";
+            this.widthLabel2.Text = "宽度:";
             // 
             // heightLabel3
             // 
             this.heightLabel3.AutoSize = true;
             this.heightLabel3.Location = new System.Drawing.Point(243, 21);
             this.heightLabel3.Name = "heightLabel3";
-            this.heightLabel3.Size = new System.Drawing.Size(38, 13);
+            this.heightLabel3.Size = new System.Drawing.Size(34, 13);
             this.heightLabel3.TabIndex = 0;
-            this.heightLabel3.Text = "Height";
+            this.heightLabel3.Text = "高度:";
             // 
             // lengthLabel
             // 
             this.lengthLabel.AutoSize = true;
             this.lengthLabel.Location = new System.Drawing.Point(124, 21);
             this.lengthLabel.Name = "lengthLabel";
-            this.lengthLabel.Size = new System.Drawing.Size(40, 13);
+            this.lengthLabel.Size = new System.Drawing.Size(34, 13);
             this.lengthLabel.TabIndex = 0;
-            this.lengthLabel.Text = "Length";
+            this.lengthLabel.Text = "长度:";
             // 
             // roundGroupBox
             // 
@@ -337,21 +337,21 @@
             this.roundGroupBox.Size = new System.Drawing.Size(396, 45);
             this.roundGroupBox.TabIndex = 3;
             this.roundGroupBox.TabStop = false;
-            this.roundGroupBox.Text = "Round";
+            this.roundGroupBox.Text = "圆形";
             // 
             // diameterLabel
             // 
             this.diameterLabel.AutoSize = true;
-            this.diameterLabel.Location = new System.Drawing.Point(8, 18);
+            this.diameterLabel.Location = new System.Drawing.Point(8, 19);
             this.diameterLabel.Name = "diameterLabel";
-            this.diameterLabel.Size = new System.Drawing.Size(49, 13);
+            this.diameterLabel.Size = new System.Drawing.Size(34, 13);
             this.diameterLabel.TabIndex = 0;
-            this.diameterLabel.Text = "Diameter";
+            this.diameterLabel.Text = "直径:";
             // 
             // heightTextBox2
             // 
             this.heightTextBox2.Enabled = false;
-            this.heightTextBox2.Location = new System.Drawing.Point(238, 15);
+            this.heightTextBox2.Location = new System.Drawing.Point(238, 16);
             this.heightTextBox2.Name = "heightTextBox2";
             this.heightTextBox2.Size = new System.Drawing.Size(100, 20);
             this.heightTextBox2.TabIndex = 1;
@@ -360,7 +360,7 @@
             // diameterTextBox
             // 
             this.diameterTextBox.Enabled = false;
-            this.diameterTextBox.Location = new System.Drawing.Point(61, 15);
+            this.diameterTextBox.Location = new System.Drawing.Point(61, 16);
             this.diameterTextBox.Name = "diameterTextBox";
             this.diameterTextBox.Size = new System.Drawing.Size(100, 20);
             this.diameterTextBox.TabIndex = 1;
@@ -370,11 +370,11 @@
             // 
             this.heightLabel2.AutoSize = true;
             this.heightLabel2.Enabled = false;
-            this.heightLabel2.Location = new System.Drawing.Point(185, 19);
+            this.heightLabel2.Location = new System.Drawing.Point(185, 20);
             this.heightLabel2.Name = "heightLabel2";
-            this.heightLabel2.Size = new System.Drawing.Size(38, 13);
+            this.heightLabel2.Size = new System.Drawing.Size(34, 13);
             this.heightLabel2.TabIndex = 0;
-            this.heightLabel2.Text = "Height";
+            this.heightLabel2.Text = "高度:";
             // 
             // genericGroupBox
             // 
@@ -387,7 +387,7 @@
             this.genericGroupBox.Size = new System.Drawing.Size(396, 43);
             this.genericGroupBox.TabIndex = 2;
             this.genericGroupBox.TabStop = false;
-            this.genericGroupBox.Text = "Generic";
+            this.genericGroupBox.Text = "通用";
             // 
             // widthTextBox1
             // 
@@ -410,18 +410,18 @@
             this.widthLabel1.AutoSize = true;
             this.widthLabel1.Location = new System.Drawing.Point(8, 19);
             this.widthLabel1.Name = "widthLabel1";
-            this.widthLabel1.Size = new System.Drawing.Size(35, 13);
+            this.widthLabel1.Size = new System.Drawing.Size(34, 13);
             this.widthLabel1.TabIndex = 0;
-            this.widthLabel1.Text = "Width";
+            this.widthLabel1.Text = "宽度:";
             // 
             // heightLabel1
             // 
             this.heightLabel1.AutoSize = true;
             this.heightLabel1.Location = new System.Drawing.Point(184, 19);
             this.heightLabel1.Name = "heightLabel1";
-            this.heightLabel1.Size = new System.Drawing.Size(38, 13);
+            this.heightLabel1.Size = new System.Drawing.Size(34, 13);
             this.heightLabel1.TabIndex = 0;
-            this.heightLabel1.Text = "Height";
+            this.heightLabel1.Text = "高度:";
             // 
             // materialGroupBox
             // 
@@ -434,7 +434,7 @@
             this.materialGroupBox.Size = new System.Drawing.Size(198, 85);
             this.materialGroupBox.TabIndex = 10;
             this.materialGroupBox.TabStop = false;
-            this.materialGroupBox.Text = "Material";
+            this.materialGroupBox.Text = "材料";
             // 
             // ropeComboBox
             // 
@@ -452,9 +452,9 @@
             this.ropeLabel.AutoSize = true;
             this.ropeLabel.Location = new System.Drawing.Point(11, 56);
             this.ropeLabel.Name = "ropeLabel";
-            this.ropeLabel.Size = new System.Drawing.Size(33, 13);
+            this.ropeLabel.Size = new System.Drawing.Size(34, 13);
             this.ropeLabel.TabIndex = 4;
-            this.ropeLabel.Text = "Rope";
+            this.ropeLabel.Text = "绳子:";
             // 
             // logoGroupBox
             // 
@@ -467,7 +467,7 @@
             this.logoGroupBox.Size = new System.Drawing.Size(204, 85);
             this.logoGroupBox.TabIndex = 11;
             this.logoGroupBox.TabStop = false;
-            this.logoGroupBox.Text = "Logo";
+            this.logoGroupBox.Text = "图案";
             // 
             // spriceTextBox
             // 
@@ -490,18 +490,18 @@
             this.spriceLabel.AutoSize = true;
             this.spriceLabel.Location = new System.Drawing.Point(7, 56);
             this.spriceLabel.Name = "spriceLabel";
-            this.spriceLabel.Size = new System.Drawing.Size(41, 13);
+            this.spriceLabel.Size = new System.Drawing.Size(34, 13);
             this.spriceLabel.TabIndex = 0;
-            this.spriceLabel.Text = "S Price";
+            this.spriceLabel.Text = "丝印:";
             // 
             // tpriceLabel
             // 
             this.tpriceLabel.AutoSize = true;
             this.tpriceLabel.Location = new System.Drawing.Point(6, 25);
             this.tpriceLabel.Name = "tpriceLabel";
-            this.tpriceLabel.Size = new System.Drawing.Size(41, 13);
+            this.tpriceLabel.Size = new System.Drawing.Size(46, 13);
             this.tpriceLabel.TabIndex = 0;
-            this.tpriceLabel.Text = "T Price";
+            this.tpriceLabel.Text = "烫画印:";
             // 
             // shipGroupBox
             // 
@@ -514,23 +514,23 @@
             this.shipGroupBox.Size = new System.Drawing.Size(408, 61);
             this.shipGroupBox.TabIndex = 12;
             this.shipGroupBox.TabStop = false;
-            this.shipGroupBox.Text = "Ship";
+            this.shipGroupBox.Text = "快递";
             // 
             // shipwayLabel
             // 
             this.shipwayLabel.AutoSize = true;
-            this.shipwayLabel.Location = new System.Drawing.Point(188, 27);
+            this.shipwayLabel.Location = new System.Drawing.Point(11, 28);
             this.shipwayLabel.Name = "shipwayLabel";
-            this.shipwayLabel.Size = new System.Drawing.Size(53, 13);
+            this.shipwayLabel.Size = new System.Drawing.Size(58, 13);
             this.shipwayLabel.TabIndex = 0;
-            this.shipwayLabel.Text = "Ship Way";
+            this.shipwayLabel.Text = "快递方式:";
             // 
             // shipwayComboBox
             // 
             this.shipwayComboBox.DisplayMember = "Cotton";
             this.shipwayComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.shipwayComboBox.FormattingEnabled = true;
-            this.shipwayComboBox.Location = new System.Drawing.Point(259, 22);
+            this.shipwayComboBox.Location = new System.Drawing.Point(82, 23);
             this.shipwayComboBox.MaxDropDownItems = 20;
             this.shipwayComboBox.Name = "shipwayComboBox";
             this.shipwayComboBox.Size = new System.Drawing.Size(100, 21);
@@ -542,7 +542,7 @@
             this.distanceComboBox.DisplayMember = "Cotton";
             this.distanceComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.distanceComboBox.FormattingEnabled = true;
-            this.distanceComboBox.Location = new System.Drawing.Point(66, 22);
+            this.distanceComboBox.Location = new System.Drawing.Point(252, 23);
             this.distanceComboBox.MaxDropDownItems = 20;
             this.distanceComboBox.Name = "distanceComboBox";
             this.distanceComboBox.Size = new System.Drawing.Size(100, 21);
@@ -552,11 +552,11 @@
             // distanceLabel
             // 
             this.distanceLabel.AutoSize = true;
-            this.distanceLabel.Location = new System.Drawing.Point(11, 27);
+            this.distanceLabel.Location = new System.Drawing.Point(204, 28);
             this.distanceLabel.Name = "distanceLabel";
-            this.distanceLabel.Size = new System.Drawing.Size(49, 13);
+            this.distanceLabel.Size = new System.Drawing.Size(34, 13);
             this.distanceLabel.TabIndex = 0;
-            this.distanceLabel.Text = "Distance";
+            this.distanceLabel.Text = "送至:";
             // 
             // outputGroupBox
             // 
@@ -568,7 +568,7 @@
             this.outputGroupBox.Size = new System.Drawing.Size(408, 218);
             this.outputGroupBox.TabIndex = 13;
             this.outputGroupBox.TabStop = false;
-            this.outputGroupBox.Text = "Output";
+            this.outputGroupBox.Text = "输出结果";
             // 
             // priceoutGroupBox
             // 
@@ -587,7 +587,7 @@
             this.priceoutGroupBox.Size = new System.Drawing.Size(396, 74);
             this.priceoutGroupBox.TabIndex = 3;
             this.priceoutGroupBox.TabStop = false;
-            this.priceoutGroupBox.Text = "Prices (RMB)";
+            this.priceoutGroupBox.Text = "费用(元)";
             // 
             // receiptTextBox
             // 
@@ -610,9 +610,9 @@
             this.salepriceLabel.AutoSize = true;
             this.salepriceLabel.Location = new System.Drawing.Point(136, 49);
             this.salepriceLabel.Name = "salepriceLabel";
-            this.salepriceLabel.Size = new System.Drawing.Size(31, 13);
+            this.salepriceLabel.Size = new System.Drawing.Size(34, 13);
             this.salepriceLabel.TabIndex = 0;
-            this.salepriceLabel.Text = "Sale ";
+            this.salepriceLabel.Text = "售价:";
             // 
             // shippriceTextBox
             // 
@@ -627,18 +627,18 @@
             this.receiptLabel.AutoSize = true;
             this.receiptLabel.Location = new System.Drawing.Point(255, 24);
             this.receiptLabel.Name = "receiptLabel";
-            this.receiptLabel.Size = new System.Drawing.Size(44, 13);
+            this.receiptLabel.Size = new System.Drawing.Size(46, 13);
             this.receiptLabel.TabIndex = 0;
-            this.receiptLabel.Text = "Receipt";
+            this.receiptLabel.Text = "带发票:";
             // 
             // shippriceLabel
             // 
             this.shippriceLabel.AutoSize = true;
             this.shippriceLabel.Location = new System.Drawing.Point(136, 24);
             this.shippriceLabel.Name = "shippriceLabel";
-            this.shippriceLabel.Size = new System.Drawing.Size(31, 13);
+            this.shippriceLabel.Size = new System.Drawing.Size(34, 13);
             this.shippriceLabel.TabIndex = 0;
-            this.shippriceLabel.Text = "Ship ";
+            this.shippriceLabel.Text = "运费:";
             // 
             // totalpriceTextBox
             // 
@@ -661,9 +661,9 @@
             this.totalpriceLabel.AutoSize = true;
             this.totalpriceLabel.Location = new System.Drawing.Point(14, 50);
             this.totalpriceLabel.Name = "totalpriceLabel";
-            this.totalpriceLabel.Size = new System.Drawing.Size(34, 13);
+            this.totalpriceLabel.Size = new System.Drawing.Size(46, 13);
             this.totalpriceLabel.TabIndex = 0;
-            this.totalpriceLabel.Text = "Total ";
+            this.totalpriceLabel.Text = "总费用:";
             // 
             // logopriceLabel
             // 
@@ -672,7 +672,7 @@
             this.logopriceLabel.Name = "logopriceLabel";
             this.logopriceLabel.Size = new System.Drawing.Size(34, 13);
             this.logopriceLabel.TabIndex = 0;
-            this.logopriceLabel.Text = "Logo ";
+            this.logopriceLabel.Text = "图案:";
             // 
             // routGroupBox1
             // 
@@ -687,16 +687,16 @@
             this.routGroupBox1.Size = new System.Drawing.Size(396, 55);
             this.routGroupBox1.TabIndex = 2;
             this.routGroupBox1.TabStop = false;
-            this.routGroupBox1.Text = "Rope";
+            this.routGroupBox1.Text = "绳子";
             // 
             // rweightLabel
             // 
             this.rweightLabel.AutoSize = true;
             this.rweightLabel.Location = new System.Drawing.Point(256, 26);
             this.rweightLabel.Name = "rweightLabel";
-            this.rweightLabel.Size = new System.Drawing.Size(60, 13);
+            this.rweightLabel.Size = new System.Drawing.Size(64, 13);
             this.rweightLabel.TabIndex = 0;
-            this.rweightLabel.Text = "Weight(Kg)";
+            this.rweightLabel.Text = "重量(千克):";
             // 
             // rweightTextBox
             // 
@@ -711,9 +711,9 @@
             this.rcountLabel.AutoSize = true;
             this.rcountLabel.Location = new System.Drawing.Point(11, 27);
             this.rcountLabel.Name = "rcountLabel";
-            this.rcountLabel.Size = new System.Drawing.Size(49, 13);
+            this.rcountLabel.Size = new System.Drawing.Size(52, 13);
             this.rcountLabel.TabIndex = 0;
-            this.rcountLabel.Text = "Count(m)";
+            this.rcountLabel.Text = "数量(米):";
             // 
             // rpriceTextBox
             // 
@@ -728,9 +728,9 @@
             this.rpriceLabel.AutoSize = true;
             this.rpriceLabel.Location = new System.Drawing.Point(126, 27);
             this.rpriceLabel.Name = "rpriceLabel";
-            this.rpriceLabel.Size = new System.Drawing.Size(61, 13);
+            this.rpriceLabel.Size = new System.Drawing.Size(52, 13);
             this.rpriceLabel.TabIndex = 0;
-            this.rpriceLabel.Text = "Price(RMB)";
+            this.rpriceLabel.Text = "费用(元):";
             // 
             // rcountTextBox
             // 
@@ -753,16 +753,16 @@
             this.foutGroupBox.Size = new System.Drawing.Size(396, 55);
             this.foutGroupBox.TabIndex = 2;
             this.foutGroupBox.TabStop = false;
-            this.foutGroupBox.Text = "Fabric";
+            this.foutGroupBox.Text = "布料";
             // 
             // fweightlabel
             // 
             this.fweightlabel.AutoSize = true;
             this.fweightlabel.Location = new System.Drawing.Point(256, 26);
             this.fweightlabel.Name = "fweightlabel";
-            this.fweightlabel.Size = new System.Drawing.Size(60, 13);
+            this.fweightlabel.Size = new System.Drawing.Size(64, 13);
             this.fweightlabel.TabIndex = 0;
-            this.fweightlabel.Text = "Weight(Kg)";
+            this.fweightlabel.Text = "重量(千克):";
             // 
             // fweightTextBox
             // 
@@ -777,9 +777,9 @@
             this.fcountLabel.AutoSize = true;
             this.fcountLabel.Location = new System.Drawing.Point(11, 27);
             this.fcountLabel.Name = "fcountLabel";
-            this.fcountLabel.Size = new System.Drawing.Size(49, 13);
+            this.fcountLabel.Size = new System.Drawing.Size(52, 13);
             this.fcountLabel.TabIndex = 0;
-            this.fcountLabel.Text = "Count(m)";
+            this.fcountLabel.Text = "数量(米):";
             // 
             // fpriceTextBox
             // 
@@ -794,9 +794,9 @@
             this.fpriceLabel.AutoSize = true;
             this.fpriceLabel.Location = new System.Drawing.Point(126, 27);
             this.fpriceLabel.Name = "fpriceLabel";
-            this.fpriceLabel.Size = new System.Drawing.Size(61, 13);
+            this.fpriceLabel.Size = new System.Drawing.Size(52, 13);
             this.fpriceLabel.TabIndex = 0;
-            this.fpriceLabel.Text = "Price(RMB)";
+            this.fpriceLabel.Text = "费用(元):";
             // 
             // fcountTextBox
             // 
@@ -821,7 +821,7 @@
             this.Controls.Add(this.numberGroupBox);
             this.MaximizeBox = false;
             this.Name = "SunflowerForm";
-            this.Text = "Sunflower";
+            this.Text = "向阳花开";
             this.numberGroupBox.ResumeLayout(false);
             this.numberGroupBox.PerformLayout();
             this.styleGroupBox.ResumeLayout(false);

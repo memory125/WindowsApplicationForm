@@ -13,25 +13,18 @@ namespace Sunflower
 {
     public partial class SunflowerForm : Form
     {
+        private List<double> configsData;
         private List<double> fabircWeight;
         private List<double> fabircWidth;
         private List<double> fabricPrice;
         private List<double> ropeWeight;
         private List<double> ropePrice;
-        private List<double> shipdistancePrice;
+        private List<double> shipSFPrice;
+        private List<double> shipYDPrice;
+        private List<double> currentShipPrice;
         private List<double> shipwayPrice;
 
         private Int16 currentBottomSelectIndex = 0;
-
-        private double Rope_Double_Space = 5.0f;
-        private double Rope_Single_Space = 5.0f;
-
-        private double Width_Space_Generic = 1.0;
-        private double Height_Space_Generic_top = 2.5;
-        private double Height_Space_Muer_top = 5.0;
-        private double Height_Space_Tie_top = 1.0;
-        private double Height_Space_Round_bottom = 1.0;
-        private double Height_Space_Single_bottom = 1.0;
 
         private double Width_Space = 0.0f;
         private double Height_Space = 0.0f;
@@ -42,9 +35,25 @@ namespace Sunflower
         private Int16 shipDistanceIndex = -1;
         private Int16 shipWayIndex = -1;
 
+        private enum ConfigsData
+        {
+            Rope_Double_Space_Index,
+            Rope_Single_Space_Index,
+            Width_Space_Generic_Index,
+            Height_Space_Generic_top_Index,
+            Height_Space_Muer_top_Index,
+            Height_Space_Tie_top_Index,
+            Height_Space_Round_bottom_Index,
+            Height_Space_Single_bottom_Index,
+            Profit_ratio_Index,
+            Invoice_ratio_Index,
+            ConfigsData_Max
+        };
+
         public SunflowerForm()
         {
             InitializeComponent();
+            GetConfigData();
             GetFabricData();
             GetRopeData();
             GetShipDistanceData();
@@ -112,6 +121,40 @@ namespace Sunflower
             }
         }
 
+        private void GetConfigData()
+        {
+            string currentPath = AppDomain.CurrentDomain.BaseDirectory;
+            currentPath += "configs.bin";
+
+            if (!File.Exists(currentPath))
+            {
+                MessageBox.Show(string.Format("文件\"{0}\"不存在！", currentPath, Encoding.UTF8));
+                return;
+            }
+
+            string[] lines = File.ReadAllLines(currentPath, Encoding.UTF8);
+            if (lines.Length == 0)
+            {
+                MessageBox.Show(string.Format("\"{0}\"内容为空，请参考\"name = value\"格式！", currentPath, Encoding.UTF8));
+                return;
+            }
+            else
+            {
+                configsData = new List<double>();
+            }
+         
+            foreach (string line in lines)
+            {
+                string[] str = line.Split('=');
+                if (str.Length != 2)
+                {
+                    MessageBox.Show(string.Format("\"{0}\"文件格式错误，请参考\"name/weight/width/price\"格式！", currentPath, Encoding.UTF8));
+                    return;
+                }
+
+                configsData.Add(Convert.ToDouble(str[1]));                
+            }
+        }
         private void GetFabricData()
         {
             string currentPath = AppDomain.CurrentDomain.BaseDirectory;
@@ -192,7 +235,7 @@ namespace Sunflower
         private void GetShipDistanceData()
         {
             string currentPath = AppDomain.CurrentDomain.BaseDirectory;
-            currentPath += "shipdistances.bin";
+            currentPath += "shipto.bin";
 
             if (!File.Exists(currentPath))
             {
@@ -203,20 +246,21 @@ namespace Sunflower
             string[] lines = File.ReadAllLines(currentPath, Encoding.UTF8);
             if (lines.Length == 0)
             {
-                MessageBox.Show(string.Format("\"{0}\"内容为空，请参考\"name/price\"格式！", currentPath, Encoding.UTF8));
+                MessageBox.Show(string.Format("\"{0}\"内容为空，请参考\"name/SF price/YD price\"格式！", currentPath, Encoding.UTF8));
                 return;
             }
             else
             {
-                shipdistancePrice = new List<double>();
+                shipSFPrice = new List<double>();
+                shipYDPrice = new List<double>();
             }
 
             foreach (string line in lines)
             {
                 string[] str = line.Split('/');
-                if (str.Length != 2)
+                if (str.Length != 3)
                 {
-                    MessageBox.Show(string.Format("\"{0}\"文件格式错误，请参考\"name/price\"格式！", currentPath, Encoding.UTF8));
+                    MessageBox.Show(string.Format("\"{0}\"文件格式错误，请参考\"name/SF price/YD price\"格式！", currentPath, Encoding.UTF8));
                     return;
                 }
                 //Encoding utf8 = Encoding.UTF8;
@@ -231,7 +275,8 @@ namespace Sunflower
                 //string defaultString = new string(defaultChars);
 
                 distanceComboBox.Items.Add(str[0]);
-                shipdistancePrice.Add(Convert.ToDouble(str[1]));
+                shipSFPrice.Add(Convert.ToDouble(str[1]));
+                shipYDPrice.Add(Convert.ToDouble(str[2]));
             }
         }
 
@@ -479,7 +524,7 @@ namespace Sunflower
             }
           
             double piece_width = 3.141 * Convert.ToDouble(diameterValue) + Width_Space;
-            double piece_height = Convert.ToDouble(heightValue) + Height_Space * 2 + Height_Space_Round_bottom;
+            double piece_height = Convert.ToDouble(heightValue) + Height_Space * 2 + configsData[(Int16)ConfigsData.Height_Space_Round_bottom_Index];
 
             CalculatePriceAndUpdateOutputContent(piece_width, piece_height);
         }
@@ -508,11 +553,11 @@ namespace Sunflower
             switch (ropetypeIndex)
             {
                 case 0:                  //single
-                    Width_Space = Width_Space_Generic / 2;
+                    Width_Space = configsData[(Int16)ConfigsData.Width_Space_Generic_Index] / 2;
                     break;
 
                 case 1:                  //double
-                    Width_Space = Width_Space_Generic;
+                    Width_Space = configsData[(Int16)ConfigsData.Width_Space_Generic_Index];
                     break;
 
                 default:
@@ -552,9 +597,11 @@ namespace Sunflower
             if (FabricNumberUnit.CompareTo(1) < 0)
             {
                 MessageBox.Show(string.Format("袋子尺寸超过一张布料尺寸！", Encoding.UTF8));
+                ClearEntryContent();
+                return;
             } 
 
-            Int32 fabricNeed = Convert.ToInt32(TotalNumber / FabricNumberUnit) * Convert.ToInt32(piece_height / 100);
+            Int32 fabricNeed = Convert.ToInt32((TotalNumber / FabricNumberUnit) * piece_height / 100);
             double fabricNeed_Weight = (TotalNumber * piece_width * piece_height / 100) * fabircWeight[fabricTypeIndex] / 1000;
             double fabricNeed_Price = fabricNeed * fabricPrice[fabricTypeIndex];
 
@@ -569,11 +616,11 @@ namespace Sunflower
             switch (ropeType)
             {
                 case 0:
-                    ropeNeed = (piece_width + Rope_Double_Space) * 4;
+                    ropeNeed = (piece_width + configsData[(Int16)ConfigsData.Rope_Double_Space_Index]) * 4;
                     break;
 
                 case 1:
-                    ropeNeed = (piece_width + Rope_Single_Space) * 2;
+                    ropeNeed = (piece_width + configsData[(Int16)ConfigsData.Rope_Single_Space_Index]) * 2;
                     break;
             }
             // calculate the rope output            
@@ -591,17 +638,17 @@ namespace Sunflower
             // calculate the total weight
             double totalWeight = fabricNeed_Weight + ropeNeed_Weight;
 
-            // calculate the ship price
-            double Ship_Price = shipdistancePrice[shipDistanceIndex] + shipwayPrice[shipWayIndex] * (totalWeight - 0.9);
+            // calculate the ship price        
+            double Ship_Price = currentShipPrice[shipDistanceIndex] + shipwayPrice[shipWayIndex] * (totalWeight - 0.9);
 
             // calculate the total price
             double Total_Price = fabricNeed_Price + ropeNeed_Price + Logo_Price + Ship_Price;
 
-            // calculate the sale price (x = 20%)
-            double Sale_Price = Total_Price * (1 + 0.2);
+            // calculate the sale price (according to the profit, which is read from config file)
+            double Sale_Price = Total_Price * (1 + configsData[(Int16)ConfigsData.Profit_ratio_Index]);
 
-            // calculate the receipt price (y = 3%)
-            double Receipt_Price = Sale_Price * (1 + 0.03);
+            // calculate the invoice price (read from config file)
+            double Receipt_Price = Sale_Price * (1 + configsData[(Int16)ConfigsData.Invoice_ratio_Index]);
 
             // update the finally output
             // logo
@@ -627,15 +674,15 @@ namespace Sunflower
             switch (topIndex)
             {
                 case 0:               //Generic
-                    Height_Space = Height_Space_Generic_top;
+                    Height_Space = configsData[(Int16)ConfigsData.Height_Space_Generic_top_Index];
                     break;
 
                 case 1:               //Muer
-                    Height_Space = Height_Space_Muer_top;
+                    Height_Space = configsData[(Int16)ConfigsData.Height_Space_Muer_top_Index];
                     break;
 
                 case 2:               //Tie
-                    Height_Space = Height_Space_Tie_top;
+                    Height_Space = configsData[(Int16)ConfigsData.Height_Space_Tie_top_Index];
                     break;
 
                 default:
@@ -672,7 +719,32 @@ namespace Sunflower
             var shipwayIndex = shipwayComboBox.SelectedIndex;
             shipWayIndex = Convert.ToInt16(shipwayIndex);
 
+            switch (shipwayIndex)
+            {
+                case 0:                         //Shun Feng
+                    currentShipPrice = shipSFPrice;
+                    break;
+
+                case 1:                        //Yun Da
+                    currentShipPrice = shipYDPrice;
+                    break;
+
+                default:
+                    break;
+            }
+
             UpdateOutputResult();            
+        }
+
+        private void ClearEntryContent()
+        {
+            widthTextBox2.Text = null;
+            lengthTextBox.Text = null;
+            heightTextBox3.Text = null;
+            diameterTextBox.Text = null;
+            heightTextBox2.Text = null;
+            widthTextBox1.Text = null;
+            heightTextBox1.Text = null;
         }
     }
 }
