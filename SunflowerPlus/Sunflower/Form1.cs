@@ -502,7 +502,7 @@ namespace Sunflower
             var lengthValue = lengthTextBox.Text;
             var heightValue = heightTextBox3.Text;
             
-            if (widthValue.Equals(null) || lengthValue.Equals(null) || heightValue.Equals(null))
+            if (widthValue.Equals("") || lengthValue.Equals("") || heightValue.Equals(""))
             {
                 return;
             }
@@ -518,7 +518,7 @@ namespace Sunflower
             var diameterValue = diameterTextBox.Text;
             var heightValue = heightTextBox2.Text;
 
-            if (diameterValue.Equals(null) || heightValue.Equals(null))
+            if (diameterValue.Equals("") || heightValue.Equals(""))
             {
                 return;
             }
@@ -534,7 +534,7 @@ namespace Sunflower
             var widthValue = widthTextBox1.Text;
             var heightValue = heightTextBox1.Text;
 
-            if (widthValue.Equals(null) || heightValue.Equals(null))
+            if (widthValue.Equals("") || heightValue.Equals(""))
             {
                 return;
             }
@@ -572,7 +572,7 @@ namespace Sunflower
             var logotPriceValue = tpriceTextBox.Text;
             var logosPriceValue = spriceTextBox.Text;        
 
-            if (totalNumber.Equals(null) || logotPriceValue.Equals(null) || logosPriceValue.Equals(null))
+            if (totalNumber.Equals("") || logotPriceValue.Equals("") || logosPriceValue.Equals(""))
             {
                 return;
             }
@@ -599,11 +599,16 @@ namespace Sunflower
                 MessageBox.Show(string.Format("袋子尺寸超过一张布料尺寸！", Encoding.UTF8));
                 ClearEntryContent();
                 return;
-            } 
+            }
 
-            Int32 fabricNeed = Convert.ToInt32((TotalNumber / FabricNumberUnit) * piece_height / 100);
-            double fabricNeed_Weight = (TotalNumber * piece_width * piece_height / 100) * fabircWeight[fabricTypeIndex] / 1000;
+            // (int)(Number /(int)(fabric_width/piece_width))*piece_height/100
+
+            Int32 fabricNeed = Convert.ToInt32(Convert.ToInt32(TotalNumber / Convert.ToInt32(FabricNumberUnit) * piece_height) / 100);
+            double fabricNeed_Weight = (TotalNumber * piece_width * piece_height  * fabircWeight[fabricTypeIndex]) / 100000;
+            fabricNeed_Weight = Math.Round(fabricNeed_Weight, 2, MidpointRounding.AwayFromZero);
+
             double fabricNeed_Price = fabricNeed * fabricPrice[fabricTypeIndex];
+            fabricNeed_Price = Math.Round(fabricNeed_Price, 2, MidpointRounding.AwayFromZero);
 
             // update the fabric output
             fcountTextBox.Text = fabricNeed.ToString();
@@ -623,9 +628,15 @@ namespace Sunflower
                     ropeNeed = (piece_width + configsData[(Int16)ConfigsData.Rope_Single_Space_Index]) * 2;
                     break;
             }
+
+            ropeNeed = Math.Round(ropeNeed, 2, MidpointRounding.AwayFromZero);
+
             // calculate the rope output            
             double ropeNeed_Price = ropeNeed * ropePrice[ropeMaterialIndex];
+            ropeNeed_Price = Math.Round(ropeNeed_Price, 2, MidpointRounding.AwayFromZero);
+
             double ropeNeed_Weight = ropeNeed * ropeWeight[ropeMaterialIndex];
+            ropeNeed_Weight = Math.Round(ropeNeed_Weight, 2, MidpointRounding.AwayFromZero);
 
             // update the rope output
             rcountTextBox.Text = ropeNeed.ToString();
@@ -634,21 +645,27 @@ namespace Sunflower
 
             // calculate the logo price
             double Logo_Price = (Convert.ToDouble(logotPriceValue) + Convert.ToDouble(logosPriceValue)) * Convert.ToInt32(totalNumber);
+            Logo_Price = Math.Round(Logo_Price, 2, MidpointRounding.AwayFromZero);
 
             // calculate the total weight
             double totalWeight = fabricNeed_Weight + ropeNeed_Weight;
+            totalWeight = Math.Round(totalWeight, 2, MidpointRounding.AwayFromZero);
 
             // calculate the ship price        
             double Ship_Price = currentShipPrice[shipDistanceIndex] + shipwayPrice[shipWayIndex] * (totalWeight - 0.9);
+            Ship_Price = Math.Round(Ship_Price, 2, MidpointRounding.AwayFromZero);
 
             // calculate the total price
             double Total_Price = fabricNeed_Price + ropeNeed_Price + Logo_Price + Ship_Price;
+            Total_Price = Math.Round(Total_Price, 2, MidpointRounding.AwayFromZero);     
 
             // calculate the sale price (according to the profit, which is read from config file)
             double Sale_Price = Total_Price * (1 + configsData[(Int16)ConfigsData.Profit_ratio_Index]);
+            Sale_Price = Math.Round(Sale_Price, 2, MidpointRounding.AwayFromZero);
 
             // calculate the invoice price (read from config file)
             double Receipt_Price = Sale_Price * (1 + configsData[(Int16)ConfigsData.Invoice_ratio_Index]);
+            Receipt_Price = Math.Round(Receipt_Price, 2, MidpointRounding.AwayFromZero);
 
             // update the finally output
             // logo
@@ -693,25 +710,19 @@ namespace Sunflower
         private void fabricComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var fabricIndex = fabricComboBox.SelectedIndex;
-            fabricTypeIndex = Convert.ToInt16(fabricIndex);
-
-            UpdateOutputResult();
+            fabricTypeIndex = Convert.ToInt16(fabricIndex);            
         }
 
         private void ropeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var ropeIndex = ropeComboBox.SelectedIndex;
-            ropeMaterialIndex = Convert.ToInt16(ropeIndex);
-
-            UpdateOutputResult();
+            ropeMaterialIndex = Convert.ToInt16(ropeIndex);            
         }
 
         private void distanceComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var distanceIndex = distanceComboBox.SelectedIndex;
-            shipDistanceIndex = Convert.ToInt16(distanceIndex);
-
-            UpdateOutputResult();
+            shipDistanceIndex = Convert.ToInt16(distanceIndex);            
         }
 
         private void shipwayComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -731,9 +742,7 @@ namespace Sunflower
 
                 default:
                     break;
-            }
-
-            UpdateOutputResult();            
+            }          
         }
 
         private void ClearEntryContent()
@@ -745,6 +754,19 @@ namespace Sunflower
             heightTextBox2.Text = null;
             widthTextBox1.Text = null;
             heightTextBox1.Text = null;
+            rcountTextBox.Text = null;
+            rpriceTextBox.Text = null;
+            rweightTextBox.Text = null;
+            logopriceTextBox.Text = null;                     
+            shippriceTextBox.Text = null;
+            receiptTextBox.Text = null;         
+            salepriceTextBox.Text = null;         
+            totalpriceTextBox.Text = null;
+        }
+
+        private void calculateButton_Click(object sender, EventArgs e)
+        {
+            UpdateOutputResult();
         }
     }
 }

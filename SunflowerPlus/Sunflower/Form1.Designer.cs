@@ -97,6 +97,7 @@
             this.fpriceTextBox = new System.Windows.Forms.TextBox();
             this.fpriceLabel = new System.Windows.Forms.Label();
             this.fcountTextBox = new System.Windows.Forms.TextBox();
+            this.calculateButton = new System.Windows.Forms.Button();
             this.numberGroupBox.SuspendLayout();
             this.styleGroupBox.SuspendLayout();
             this.sizeGroupBox.SuspendLayout();
@@ -139,7 +140,7 @@
             this.numberGroupBox.Controls.Add(this.ropetypeLabel);
             this.numberGroupBox.Controls.Add(this.numberTextBox);
             this.numberGroupBox.Controls.Add(this.numberLabel);
-            this.numberGroupBox.Location = new System.Drawing.Point(12, 12);
+            this.numberGroupBox.Location = new System.Drawing.Point(12, 5);
             this.numberGroupBox.Name = "numberGroupBox";
             this.numberGroupBox.Size = new System.Drawing.Size(199, 80);
             this.numberGroupBox.TabIndex = 8;
@@ -191,7 +192,7 @@
             this.styleGroupBox.Controls.Add(this.topComboBox);
             this.styleGroupBox.Controls.Add(this.bottomLabel);
             this.styleGroupBox.Controls.Add(this.topLabel);
-            this.styleGroupBox.Location = new System.Drawing.Point(217, 12);
+            this.styleGroupBox.Location = new System.Drawing.Point(217, 5);
             this.styleGroupBox.Name = "styleGroupBox";
             this.styleGroupBox.Size = new System.Drawing.Size(204, 80);
             this.styleGroupBox.TabIndex = 9;
@@ -250,7 +251,7 @@
             this.sizeGroupBox.Controls.Add(this.squareGroupBox);
             this.sizeGroupBox.Controls.Add(this.roundGroupBox);
             this.sizeGroupBox.Controls.Add(this.genericGroupBox);
-            this.sizeGroupBox.Location = new System.Drawing.Point(12, 94);
+            this.sizeGroupBox.Location = new System.Drawing.Point(12, 87);
             this.sizeGroupBox.Name = "sizeGroupBox";
             this.sizeGroupBox.Size = new System.Drawing.Size(409, 166);
             this.sizeGroupBox.TabIndex = 8;
@@ -429,7 +430,7 @@
             this.materialGroupBox.Controls.Add(this.fabricComboBox);
             this.materialGroupBox.Controls.Add(this.ropeLabel);
             this.materialGroupBox.Controls.Add(this.fabricLabel);
-            this.materialGroupBox.Location = new System.Drawing.Point(13, 262);
+            this.materialGroupBox.Location = new System.Drawing.Point(13, 258);
             this.materialGroupBox.Name = "materialGroupBox";
             this.materialGroupBox.Size = new System.Drawing.Size(198, 85);
             this.materialGroupBox.TabIndex = 10;
@@ -462,7 +463,7 @@
             this.logoGroupBox.Controls.Add(this.tpriceTextBox);
             this.logoGroupBox.Controls.Add(this.spriceLabel);
             this.logoGroupBox.Controls.Add(this.tpriceLabel);
-            this.logoGroupBox.Location = new System.Drawing.Point(217, 262);
+            this.logoGroupBox.Location = new System.Drawing.Point(217, 258);
             this.logoGroupBox.Name = "logoGroupBox";
             this.logoGroupBox.Size = new System.Drawing.Size(204, 85);
             this.logoGroupBox.TabIndex = 11;
@@ -471,7 +472,7 @@
             // 
             // spriceTextBox
             // 
-            this.spriceTextBox.Location = new System.Drawing.Point(53, 53);
+            this.spriceTextBox.Location = new System.Drawing.Point(57, 53);
             this.spriceTextBox.Name = "spriceTextBox";
             this.spriceTextBox.Size = new System.Drawing.Size(100, 20);
             this.spriceTextBox.TabIndex = 1;
@@ -479,7 +480,7 @@
             // 
             // tpriceTextBox
             // 
-            this.tpriceTextBox.Location = new System.Drawing.Point(53, 22);
+            this.tpriceTextBox.Location = new System.Drawing.Point(57, 22);
             this.tpriceTextBox.Name = "tpriceTextBox";
             this.tpriceTextBox.Size = new System.Drawing.Size(100, 20);
             this.tpriceTextBox.TabIndex = 1;
@@ -509,7 +510,7 @@
             this.shipGroupBox.Controls.Add(this.shipwayComboBox);
             this.shipGroupBox.Controls.Add(this.distanceComboBox);
             this.shipGroupBox.Controls.Add(this.distanceLabel);
-            this.shipGroupBox.Location = new System.Drawing.Point(13, 352);
+            this.shipGroupBox.Location = new System.Drawing.Point(13, 346);
             this.shipGroupBox.Name = "shipGroupBox";
             this.shipGroupBox.Size = new System.Drawing.Size(408, 61);
             this.shipGroupBox.TabIndex = 12;
@@ -563,9 +564,9 @@
             this.outputGroupBox.Controls.Add(this.priceoutGroupBox);
             this.outputGroupBox.Controls.Add(this.routGroupBox1);
             this.outputGroupBox.Controls.Add(this.foutGroupBox);
-            this.outputGroupBox.Location = new System.Drawing.Point(13, 418);
+            this.outputGroupBox.Location = new System.Drawing.Point(13, 432);
             this.outputGroupBox.Name = "outputGroupBox";
-            this.outputGroupBox.Size = new System.Drawing.Size(408, 218);
+            this.outputGroupBox.Size = new System.Drawing.Size(408, 214);
             this.outputGroupBox.TabIndex = 13;
             this.outputGroupBox.TabStop = false;
             this.outputGroupBox.Text = "输出结果";
@@ -642,7 +643,7 @@
             // 
             // totalpriceTextBox
             // 
-            this.totalpriceTextBox.Location = new System.Drawing.Point(59, 46);
+            this.totalpriceTextBox.Location = new System.Drawing.Point(64, 46);
             this.totalpriceTextBox.Name = "totalpriceTextBox";
             this.totalpriceTextBox.ReadOnly = true;
             this.totalpriceTextBox.Size = new System.Drawing.Size(66, 20);
@@ -650,7 +651,7 @@
             // 
             // logopriceTextBox
             // 
-            this.logopriceTextBox.Location = new System.Drawing.Point(59, 20);
+            this.logopriceTextBox.Location = new System.Drawing.Point(64, 20);
             this.logopriceTextBox.Name = "logopriceTextBox";
             this.logopriceTextBox.ReadOnly = true;
             this.logopriceTextBox.Size = new System.Drawing.Size(66, 20);
@@ -703,7 +704,7 @@
             this.rweightTextBox.Location = new System.Drawing.Point(323, 22);
             this.rweightTextBox.Name = "rweightTextBox";
             this.rweightTextBox.ReadOnly = true;
-            this.rweightTextBox.Size = new System.Drawing.Size(57, 20);
+            this.rweightTextBox.Size = new System.Drawing.Size(60, 20);
             this.rweightTextBox.TabIndex = 1;
             // 
             // rcountLabel
@@ -717,16 +718,16 @@
             // 
             // rpriceTextBox
             // 
-            this.rpriceTextBox.Location = new System.Drawing.Point(193, 23);
+            this.rpriceTextBox.Location = new System.Drawing.Point(192, 23);
             this.rpriceTextBox.Name = "rpriceTextBox";
             this.rpriceTextBox.ReadOnly = true;
-            this.rpriceTextBox.Size = new System.Drawing.Size(57, 20);
+            this.rpriceTextBox.Size = new System.Drawing.Size(60, 20);
             this.rpriceTextBox.TabIndex = 1;
             // 
             // rpriceLabel
             // 
             this.rpriceLabel.AutoSize = true;
-            this.rpriceLabel.Location = new System.Drawing.Point(126, 27);
+            this.rpriceLabel.Location = new System.Drawing.Point(135, 27);
             this.rpriceLabel.Name = "rpriceLabel";
             this.rpriceLabel.Size = new System.Drawing.Size(52, 13);
             this.rpriceLabel.TabIndex = 0;
@@ -734,10 +735,10 @@
             // 
             // rcountTextBox
             // 
-            this.rcountTextBox.Location = new System.Drawing.Point(63, 23);
+            this.rcountTextBox.Location = new System.Drawing.Point(69, 23);
             this.rcountTextBox.Name = "rcountTextBox";
             this.rcountTextBox.ReadOnly = true;
-            this.rcountTextBox.Size = new System.Drawing.Size(57, 20);
+            this.rcountTextBox.Size = new System.Drawing.Size(60, 20);
             this.rcountTextBox.TabIndex = 1;
             // 
             // foutGroupBox
@@ -766,10 +767,10 @@
             // 
             // fweightTextBox
             // 
-            this.fweightTextBox.Location = new System.Drawing.Point(323, 22);
+            this.fweightTextBox.Location = new System.Drawing.Point(323, 23);
             this.fweightTextBox.Name = "fweightTextBox";
             this.fweightTextBox.ReadOnly = true;
-            this.fweightTextBox.Size = new System.Drawing.Size(57, 20);
+            this.fweightTextBox.Size = new System.Drawing.Size(60, 20);
             this.fweightTextBox.TabIndex = 1;
             // 
             // fcountLabel
@@ -783,16 +784,16 @@
             // 
             // fpriceTextBox
             // 
-            this.fpriceTextBox.Location = new System.Drawing.Point(193, 23);
+            this.fpriceTextBox.Location = new System.Drawing.Point(192, 23);
             this.fpriceTextBox.Name = "fpriceTextBox";
             this.fpriceTextBox.ReadOnly = true;
-            this.fpriceTextBox.Size = new System.Drawing.Size(57, 20);
+            this.fpriceTextBox.Size = new System.Drawing.Size(60, 20);
             this.fpriceTextBox.TabIndex = 1;
             // 
             // fpriceLabel
             // 
             this.fpriceLabel.AutoSize = true;
-            this.fpriceLabel.Location = new System.Drawing.Point(126, 27);
+            this.fpriceLabel.Location = new System.Drawing.Point(135, 27);
             this.fpriceLabel.Name = "fpriceLabel";
             this.fpriceLabel.Size = new System.Drawing.Size(52, 13);
             this.fpriceLabel.TabIndex = 0;
@@ -800,18 +801,30 @@
             // 
             // fcountTextBox
             // 
-            this.fcountTextBox.Location = new System.Drawing.Point(63, 23);
+            this.fcountTextBox.Location = new System.Drawing.Point(69, 23);
             this.fcountTextBox.Name = "fcountTextBox";
             this.fcountTextBox.ReadOnly = true;
-            this.fcountTextBox.Size = new System.Drawing.Size(57, 20);
+            this.fcountTextBox.Size = new System.Drawing.Size(60, 20);
             this.fcountTextBox.TabIndex = 1;
+            // 
+            // calculateButton
+            // 
+            this.calculateButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.calculateButton.Location = new System.Drawing.Point(343, 412);
+            this.calculateButton.Name = "calculateButton";
+            this.calculateButton.Size = new System.Drawing.Size(75, 23);
+            this.calculateButton.TabIndex = 14;
+            this.calculateButton.Text = "计算";
+            this.calculateButton.UseVisualStyleBackColor = true;
+            this.calculateButton.Click += new System.EventHandler(this.calculateButton_Click);
             // 
             // SunflowerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(430, 641);
+            this.ClientSize = new System.Drawing.Size(430, 653);
+            this.Controls.Add(this.calculateButton);
             this.Controls.Add(this.outputGroupBox);
             this.Controls.Add(this.shipGroupBox);
             this.Controls.Add(this.logoGroupBox);
@@ -920,6 +933,7 @@
         private System.Windows.Forms.Label receiptLabel;
         private System.Windows.Forms.Label ropetypeLabel;
         private System.Windows.Forms.ComboBox ropetypeComboBox;
+        private System.Windows.Forms.Button calculateButton;
     }
 }
 
