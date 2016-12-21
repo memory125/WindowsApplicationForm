@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SunflowerForm));
             this.fabricLabel = new System.Windows.Forms.Label();
             this.fabricComboBox = new System.Windows.Forms.ComboBox();
             this.numberGroupBox = new System.Windows.Forms.GroupBox();
@@ -152,8 +153,8 @@
             this.ropetypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ropetypeComboBox.FormattingEnabled = true;
             this.ropetypeComboBox.Items.AddRange(new object[] {
-            "Single",
-            "Double"});
+            "单向",
+            "双向"});
             this.ropetypeComboBox.Location = new System.Drawing.Point(70, 49);
             this.ropetypeComboBox.Name = "ropetypeComboBox";
             this.ropetypeComboBox.Size = new System.Drawing.Size(101, 21);
@@ -204,9 +205,9 @@
             this.bottomComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.bottomComboBox.FormattingEnabled = true;
             this.bottomComboBox.Items.AddRange(new object[] {
-            "Square",
-            "Round",
-            "Generic"});
+            "方形",
+            "圆形",
+            "常用"});
             this.bottomComboBox.Location = new System.Drawing.Point(53, 49);
             this.bottomComboBox.Name = "bottomComboBox";
             this.bottomComboBox.Size = new System.Drawing.Size(121, 21);
@@ -219,9 +220,9 @@
             this.topComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.topComboBox.FormattingEnabled = true;
             this.topComboBox.Items.AddRange(new object[] {
-            "Generic",
+            "常用",
             "Muer",
-            "Tie"});
+            "带绳子"});
             this.topComboBox.Location = new System.Drawing.Point(53, 19);
             this.topComboBox.Name = "topComboBox";
             this.topComboBox.Size = new System.Drawing.Size(121, 21);
@@ -388,7 +389,7 @@
             this.genericGroupBox.Size = new System.Drawing.Size(396, 43);
             this.genericGroupBox.TabIndex = 2;
             this.genericGroupBox.TabStop = false;
-            this.genericGroupBox.Text = "通用";
+            this.genericGroupBox.Text = "常用";
             // 
             // widthTextBox1
             // 
@@ -832,6 +833,7 @@
             this.Controls.Add(this.styleGroupBox);
             this.Controls.Add(this.sizeGroupBox);
             this.Controls.Add(this.numberGroupBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "SunflowerForm";
             this.Text = "向阳花开";

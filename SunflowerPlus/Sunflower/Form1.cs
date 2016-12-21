@@ -58,6 +58,7 @@ namespace Sunflower
             GetRopeData();
             GetShipDistanceData();
             GetShipWayData();
+            SetDefaultConfigurationData();
         }
 
         private void widthTextBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -604,7 +605,7 @@ namespace Sunflower
             // (int)(Number /(int)(fabric_width/piece_width))*piece_height/100
 
             Int32 fabricNeed = Convert.ToInt32(Convert.ToInt32(TotalNumber / Convert.ToInt32(FabricNumberUnit) * piece_height) / 100);
-            double fabricNeed_Weight = (TotalNumber * piece_width * piece_height  * fabircWeight[fabricTypeIndex]) / 100000;
+            double fabricNeed_Weight = (TotalNumber * piece_width * piece_height / 10000) * fabircWeight[fabricTypeIndex] / 1000;
             fabricNeed_Weight = Math.Round(fabricNeed_Weight, 2, MidpointRounding.AwayFromZero);
 
             double fabricNeed_Price = fabricNeed * fabricPrice[fabricTypeIndex];
@@ -621,11 +622,11 @@ namespace Sunflower
             switch (ropeType)
             {
                 case 0:
-                    ropeNeed = (piece_width + configsData[(Int16)ConfigsData.Rope_Double_Space_Index]) * 4;
+                    ropeNeed = (piece_width + configsData[(Int16)ConfigsData.Rope_Double_Space_Index]) * 4 / 100;
                     break;
 
                 case 1:
-                    ropeNeed = (piece_width + configsData[(Int16)ConfigsData.Rope_Single_Space_Index]) * 2;
+                    ropeNeed = (piece_width + configsData[(Int16)ConfigsData.Rope_Single_Space_Index]) * 2 / 100;
                     break;
             }
 
@@ -652,7 +653,7 @@ namespace Sunflower
             totalWeight = Math.Round(totalWeight, 2, MidpointRounding.AwayFromZero);
 
             // calculate the ship price        
-            double Ship_Price = currentShipPrice[shipDistanceIndex] + shipwayPrice[shipWayIndex] * (totalWeight - 0.9);
+            double Ship_Price =  shipwayPrice[shipWayIndex] + currentShipPrice[shipDistanceIndex] * (totalWeight - 0.9);
             Ship_Price = Math.Round(Ship_Price, 2, MidpointRounding.AwayFromZero);
 
             // calculate the total price
@@ -747,26 +748,35 @@ namespace Sunflower
 
         private void ClearEntryContent()
         {
-            widthTextBox2.Text = null;
-            lengthTextBox.Text = null;
-            heightTextBox3.Text = null;
-            diameterTextBox.Text = null;
-            heightTextBox2.Text = null;
-            widthTextBox1.Text = null;
-            heightTextBox1.Text = null;
-            rcountTextBox.Text = null;
-            rpriceTextBox.Text = null;
-            rweightTextBox.Text = null;
-            logopriceTextBox.Text = null;                     
-            shippriceTextBox.Text = null;
-            receiptTextBox.Text = null;         
-            salepriceTextBox.Text = null;         
-            totalpriceTextBox.Text = null;
+            widthTextBox2.Text = "";
+            lengthTextBox.Text = "";
+            heightTextBox3.Text = "";
+            diameterTextBox.Text = "";
+            heightTextBox2.Text = "";
+            widthTextBox1.Text = "";
+            heightTextBox1.Text = "";
+            rcountTextBox.Text = "";
+            rpriceTextBox.Text = "";
+            rweightTextBox.Text = "";
+            logopriceTextBox.Text = "";                     
+            shippriceTextBox.Text = "";
+            receiptTextBox.Text = "";         
+            salepriceTextBox.Text = "";         
+            totalpriceTextBox.Text = "";
         }
 
         private void calculateButton_Click(object sender, EventArgs e)
         {
             UpdateOutputResult();
+        }
+
+        private void SetDefaultConfigurationData()
+        {
+            topComboBox.SelectedIndex = 2;
+            bottomComboBox.SelectedIndex = 2;
+            tpriceTextBox.Text = "0";
+            spriceTextBox.Text = "0";
+            shipwayComboBox.SelectedIndex = 1;
         }
     }
 }
