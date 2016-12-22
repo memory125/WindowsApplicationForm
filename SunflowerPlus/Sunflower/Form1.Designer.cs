@@ -125,7 +125,6 @@
             // 
             // fabricComboBox
             // 
-            this.fabricComboBox.DisplayMember = "Cotton";
             this.fabricComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.fabricComboBox.FormattingEnabled = true;
             this.fabricComboBox.Location = new System.Drawing.Point(61, 22);
@@ -216,7 +215,6 @@
             // 
             // topComboBox
             // 
-            this.topComboBox.DisplayMember = "2";
             this.topComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.topComboBox.FormattingEnabled = true;
             this.topComboBox.Items.AddRange(new object[] {
@@ -529,7 +527,6 @@
             // 
             // shipwayComboBox
             // 
-            this.shipwayComboBox.DisplayMember = "Cotton";
             this.shipwayComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.shipwayComboBox.FormattingEnabled = true;
             this.shipwayComboBox.Location = new System.Drawing.Point(82, 23);
@@ -541,7 +538,6 @@
             // 
             // distanceComboBox
             // 
-            this.distanceComboBox.DisplayMember = "Cotton";
             this.distanceComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.distanceComboBox.FormattingEnabled = true;
             this.distanceComboBox.Location = new System.Drawing.Point(252, 23);
