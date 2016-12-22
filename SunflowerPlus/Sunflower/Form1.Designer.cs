@@ -153,8 +153,8 @@
             this.ropetypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ropetypeComboBox.FormattingEnabled = true;
             this.ropetypeComboBox.Items.AddRange(new object[] {
-            "单向",
-            "双向"});
+            "单抽",
+            "双抽"});
             this.ropetypeComboBox.Location = new System.Drawing.Point(70, 49);
             this.ropetypeComboBox.Name = "ropetypeComboBox";
             this.ropetypeComboBox.Size = new System.Drawing.Size(101, 21);
@@ -221,8 +221,8 @@
             this.topComboBox.FormattingEnabled = true;
             this.topComboBox.Items.AddRange(new object[] {
             "常用",
-            "Muer",
-            "带绳子"});
+            "木耳",
+            "绑绳子"});
             this.topComboBox.Location = new System.Drawing.Point(53, 19);
             this.topComboBox.Name = "topComboBox";
             this.topComboBox.Size = new System.Drawing.Size(121, 21);
@@ -702,7 +702,7 @@
             // 
             // rweightTextBox
             // 
-            this.rweightTextBox.Location = new System.Drawing.Point(323, 22);
+            this.rweightTextBox.Location = new System.Drawing.Point(326, 22);
             this.rweightTextBox.Name = "rweightTextBox";
             this.rweightTextBox.ReadOnly = true;
             this.rweightTextBox.Size = new System.Drawing.Size(60, 20);
@@ -768,7 +768,7 @@
             // 
             // fweightTextBox
             // 
-            this.fweightTextBox.Location = new System.Drawing.Point(323, 23);
+            this.fweightTextBox.Location = new System.Drawing.Point(326, 23);
             this.fweightTextBox.Name = "fweightTextBox";
             this.fweightTextBox.ReadOnly = true;
             this.fweightTextBox.Size = new System.Drawing.Size(60, 20);

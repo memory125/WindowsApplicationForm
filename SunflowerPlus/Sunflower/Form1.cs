@@ -621,23 +621,23 @@ namespace Sunflower
             // rope
             switch (ropeType)
             {
-                case 0:
-                    ropeNeed = (piece_width + configsData[(Int16)ConfigsData.Rope_Double_Space_Index]) * 4 / 100;
+                case 1:
+                    ropeNeed = (piece_width/2 + configsData[(Int16)ConfigsData.Rope_Double_Space_Index]) * 4 / 100 * TotalNumber;
                     break;
 
-                case 1:
-                    ropeNeed = (piece_width + configsData[(Int16)ConfigsData.Rope_Single_Space_Index]) * 2 / 100;
+                case 0:
+                    ropeNeed = (piece_width/2 + configsData[(Int16)ConfigsData.Rope_Single_Space_Index]) * 2 / 100 * TotalNumber;
                     break;
             }
 
-            ropeNeed = Math.Round(ropeNeed, 2, MidpointRounding.AwayFromZero);
+           // ropeNeed = Math.Round(ropeNeed, 2, MidpointRounding.AwayFromZero);
 
             // calculate the rope output            
             double ropeNeed_Price = ropeNeed * ropePrice[ropeMaterialIndex];
-            ropeNeed_Price = Math.Round(ropeNeed_Price, 2, MidpointRounding.AwayFromZero);
+            //ropeNeed_Price = Math.Round(ropeNeed_Price, 2, MidpointRounding.AwayFromZero);
 
-            double ropeNeed_Weight = ropeNeed * ropeWeight[ropeMaterialIndex];
-            ropeNeed_Weight = Math.Round(ropeNeed_Weight, 2, MidpointRounding.AwayFromZero);
+            double ropeNeed_Weight = ropeNeed * ropeWeight[ropeMaterialIndex]/1000 ; 
+           // ropeNeed_Weight = Math.Round(ropeNeed_Weight, 2, MidpointRounding.AwayFromZero);
 
             // update the rope output
             rcountTextBox.Text = ropeNeed.ToString();
@@ -665,8 +665,8 @@ namespace Sunflower
             Sale_Price = Math.Round(Sale_Price, 2, MidpointRounding.AwayFromZero);
 
             // calculate the invoice price (read from config file)
-            double Receipt_Price = Sale_Price * (1 + configsData[(Int16)ConfigsData.Invoice_ratio_Index]);
-            Receipt_Price = Math.Round(Receipt_Price, 2, MidpointRounding.AwayFromZero);
+            double Invoice_Price = Sale_Price * (1 + configsData[(Int16)ConfigsData.Invoice_ratio_Index]);
+            Invoice_Price = Math.Round(Invoice_Price, 2, MidpointRounding.AwayFromZero);
 
             // update the finally output
             // logo
@@ -675,8 +675,8 @@ namespace Sunflower
             // ship
             shippriceTextBox.Text = Ship_Price.ToString();
 
-            // receipt
-            receiptTextBox.Text = Receipt_Price.ToString();
+            // invoice
+            receiptTextBox.Text = Invoice_Price.ToString();
 
             // sale
             salepriceTextBox.Text = Sale_Price.ToString();
@@ -772,11 +772,16 @@ namespace Sunflower
 
         private void SetDefaultConfigurationData()
         {
-            topComboBox.SelectedIndex = 2;
+            numberTextBox.Text = "100";
+            ropetypeComboBox.SelectedIndex = 1;
+            topComboBox.SelectedIndex = 1;
             bottomComboBox.SelectedIndex = 2;
-            tpriceTextBox.Text = "0";
-            spriceTextBox.Text = "0";
+            fabricComboBox.SelectedIndex = 0;
+            ropeComboBox.SelectedIndex = 0;
+            tpriceTextBox.Text = "0.5";
+            spriceTextBox.Text = "0.5";
             shipwayComboBox.SelectedIndex = 1;
+            distanceComboBox.SelectedIndex = 0;
         }
     }
 }
