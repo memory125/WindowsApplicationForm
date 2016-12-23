@@ -13,9 +13,16 @@ namespace ConferenceScheduleTest
 {
     public partial class Conference : Form
     {
-        private List<string> origDatas;       
-        private List<Int16> timeSpanDatas;    
-       
+        //
+        // Store the origial datas
+        //
+        private List<string> origDatas;  
+        
+        //
+        // Store the time span for each conference item
+        //     
+        private List<Int16> timeSpanDatas;  
+               
         public Conference()
         {
             InitializeComponent();
